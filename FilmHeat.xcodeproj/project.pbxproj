@@ -25,6 +25,7 @@
 		8949F75A188DDD090069E9D4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F735188DDD090069E9D4 /* CoreData.framework */; };
 		8949F762188DDD090069E9D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8949F760188DDD090069E9D4 /* InfoPlist.strings */; };
 		8949F764188DDD090069E9D4 /* FilmHeatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F763188DDD090069E9D4 /* FilmHeatTests.m */; };
+		8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F771188DE1460069E9D4 /* SFTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		8949F75F188DDD090069E9D4 /* FilmHeatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FilmHeatTests-Info.plist"; sourceTree = "<group>"; };
 		8949F761188DDD090069E9D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8949F763188DDD090069E9D4 /* FilmHeatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmHeatTests.m; sourceTree = "<group>"; };
+		8949F770188DE1450069E9D4 /* SFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTabBarController.h; path = ../SFTabBarController.h; sourceTree = "<group>"; };
+		8949F771188DE1460069E9D4 /* SFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTabBarController.m; path = ../SFTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 		8949F737188DDD090069E9D4 /* FilmHeat */ = {
 			isa = PBXGroup;
 			children = (
+				8949F770188DE1450069E9D4 /* SFTabBarController.h */,
+				8949F771188DE1460069E9D4 /* SFTabBarController.m */,
 				8949F740188DDD090069E9D4 /* SFAppDelegate.h */,
 				8949F741188DDD090069E9D4 /* SFAppDelegate.m */,
 				8949F743188DDD090069E9D4 /* Main.storyboard */,
@@ -266,6 +271,7 @@
 			files = (
 				8949F748188DDD090069E9D4 /* FilmHeat.xcdatamodeld in Sources */,
 				8949F73E188DDD090069E9D4 /* main.m in Sources */,
+				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				8949F74B188DDD090069E9D4 /* SFMasterViewController.m in Sources */,
 				8949F74E188DDD090069E9D4 /* SFDetailViewController.m in Sources */,
