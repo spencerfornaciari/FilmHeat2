@@ -19,9 +19,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    UITabBarController *tbc = (UITabBarController *)self.window.rootViewController;
+    UINavigationController *navigationController = tbc.viewControllers[0];
     SFMasterViewController *controller = (SFMasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
+    
+    
+    //UINavigationController *navigationController = tbc.viewControllers[3];
+    //MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
     return YES;
 }
 							
