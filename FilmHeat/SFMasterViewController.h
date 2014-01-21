@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilmModel.h"
 
 #import <CoreData/CoreData.h>
 

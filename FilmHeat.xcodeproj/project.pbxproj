@@ -26,6 +26,8 @@
 		8949F762188DDD090069E9D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8949F760188DDD090069E9D4 /* InfoPlist.strings */; };
 		8949F764188DDD090069E9D4 /* FilmHeatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F763188DDD090069E9D4 /* FilmHeatTests.m */; };
 		8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F771188DE1460069E9D4 /* SFTabBarController.m */; };
+		8949F775188DF2530069E9D4 /* FilmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F774188DF2530069E9D4 /* FilmModel.m */; };
+		8949F77B188DF3040069E9D4 /* SFFilmDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F77A188DF3040069E9D4 /* SFFilmDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		8949F763188DDD090069E9D4 /* FilmHeatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmHeatTests.m; sourceTree = "<group>"; };
 		8949F770188DE1450069E9D4 /* SFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTabBarController.h; path = ../SFTabBarController.h; sourceTree = "<group>"; };
 		8949F771188DE1460069E9D4 /* SFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTabBarController.m; path = ../SFTabBarController.m; sourceTree = "<group>"; };
+		8949F773188DF2530069E9D4 /* FilmModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilmModel.h; sourceTree = "<group>"; };
+		8949F774188DF2530069E9D4 /* FilmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilmModel.m; sourceTree = "<group>"; };
+		8949F779188DF3040069E9D4 /* SFFilmDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFFilmDataController.h; sourceTree = "<group>"; };
+		8949F77A188DF3040069E9D4 /* SFFilmDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFFilmDataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,15 +132,12 @@
 		8949F737188DDD090069E9D4 /* FilmHeat */ = {
 			isa = PBXGroup;
 			children = (
-				8949F770188DE1450069E9D4 /* SFTabBarController.h */,
-				8949F771188DE1460069E9D4 /* SFTabBarController.m */,
+				8949F778188DF29C0069E9D4 /* Controller */,
+				8949F777188DF2980069E9D4 /* View */,
+				8949F776188DF2910069E9D4 /* Model */,
 				8949F740188DDD090069E9D4 /* SFAppDelegate.h */,
 				8949F741188DDD090069E9D4 /* SFAppDelegate.m */,
 				8949F743188DDD090069E9D4 /* Main.storyboard */,
-				8949F749188DDD090069E9D4 /* SFMasterViewController.h */,
-				8949F74A188DDD090069E9D4 /* SFMasterViewController.m */,
-				8949F74C188DDD090069E9D4 /* SFDetailViewController.h */,
-				8949F74D188DDD090069E9D4 /* SFDetailViewController.m */,
 				8949F74F188DDD090069E9D4 /* Images.xcassets */,
 				8949F746188DDD090069E9D4 /* FilmHeat.xcdatamodeld */,
 				8949F738188DDD090069E9D4 /* Supporting Files */,
@@ -169,6 +172,37 @@
 				8949F760188DDD090069E9D4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8949F776188DF2910069E9D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8949F773188DF2530069E9D4 /* FilmModel.h */,
+				8949F774188DF2530069E9D4 /* FilmModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8949F777188DF2980069E9D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8949F778188DF29C0069E9D4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8949F749188DDD090069E9D4 /* SFMasterViewController.h */,
+				8949F74A188DDD090069E9D4 /* SFMasterViewController.m */,
+				8949F74C188DDD090069E9D4 /* SFDetailViewController.h */,
+				8949F74D188DDD090069E9D4 /* SFDetailViewController.m */,
+				8949F770188DE1450069E9D4 /* SFTabBarController.h */,
+				8949F771188DE1460069E9D4 /* SFTabBarController.m */,
+				8949F779188DF3040069E9D4 /* SFFilmDataController.h */,
+				8949F77A188DF3040069E9D4 /* SFFilmDataController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,12 +303,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8949F77B188DF3040069E9D4 /* SFFilmDataController.m in Sources */,
 				8949F748188DDD090069E9D4 /* FilmHeat.xcdatamodeld in Sources */,
 				8949F73E188DDD090069E9D4 /* main.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				8949F74B188DDD090069E9D4 /* SFMasterViewController.m in Sources */,
 				8949F74E188DDD090069E9D4 /* SFDetailViewController.m in Sources */,
+				8949F775188DF2530069E9D4 /* FilmModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +519,7 @@
 				8949F769188DDD090069E9D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8949F76A188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "FilmHeatTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +528,7 @@
 				8949F76C188DDD090069E9D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
