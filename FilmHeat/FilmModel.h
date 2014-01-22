@@ -11,7 +11,10 @@
 @interface FilmModel : NSObject
 
 @property (strong, nonatomic) NSString *filmTitle;
-@property (strong, nonatomic) NSString *filmAudienceRating;
-@property (strong, nonatomic) NSString *filmCriticsRating;
+@property (strong, nonatomic) NSNumber *filmAudienceRating;
+@property (strong, nonatomic) NSNumber *filmCriticsRating;
+
+//@property (strong, nonatomic) NSString *filmAudienceRating;
+//@property (strong, nonatomic) NSString *filmCriticsRating;
 
 @end

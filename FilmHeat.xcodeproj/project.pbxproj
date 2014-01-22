@@ -28,6 +28,9 @@
 		8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F771188DE1460069E9D4 /* SFTabBarController.m */; };
 		8949F775188DF2530069E9D4 /* FilmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F774188DF2530069E9D4 /* FilmModel.m */; };
 		8949F77B188DF3040069E9D4 /* SFFilmDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F77A188DF3040069E9D4 /* SFFilmDataController.m */; };
+		8949F781188DFE260069E9D4 /* SFInTheaterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F780188DFE260069E9D4 /* SFInTheaterTableViewController.m */; };
+		898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBA189080D20060E847 /* SFFilmModelDataController.m */; };
+		898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,12 @@
 		8949F774188DF2530069E9D4 /* FilmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilmModel.m; sourceTree = "<group>"; };
 		8949F779188DF3040069E9D4 /* SFFilmDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFFilmDataController.h; sourceTree = "<group>"; };
 		8949F77A188DF3040069E9D4 /* SFFilmDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFFilmDataController.m; sourceTree = "<group>"; };
+		8949F77F188DFE260069E9D4 /* SFInTheaterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFInTheaterTableViewController.h; path = ../SFInTheaterTableViewController.h; sourceTree = "<group>"; };
+		8949F780188DFE260069E9D4 /* SFInTheaterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFInTheaterTableViewController.m; path = ../SFInTheaterTableViewController.m; sourceTree = "<group>"; };
+		898F4CB9189080D20060E847 /* SFFilmModelDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmModelDataController.h; path = ../SFFilmModelDataController.h; sourceTree = "<group>"; };
+		898F4CBA189080D20060E847 /* SFFilmModelDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmModelDataController.m; path = ../SFFilmModelDataController.m; sourceTree = "<group>"; };
+		898F4CBC189082A90060E847 /* SFFilmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmTableViewCell.h; path = ../SFFilmTableViewCell.h; sourceTree = "<group>"; };
+		898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmTableViewCell.m; path = ../SFFilmTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +195,8 @@
 		8949F777188DF2980069E9D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				898F4CBC189082A90060E847 /* SFFilmTableViewCell.h */,
+				898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -193,6 +204,10 @@
 		8949F778188DF29C0069E9D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				898F4CB9189080D20060E847 /* SFFilmModelDataController.h */,
+				898F4CBA189080D20060E847 /* SFFilmModelDataController.m */,
+				8949F77F188DFE260069E9D4 /* SFInTheaterTableViewController.h */,
+				8949F780188DFE260069E9D4 /* SFInTheaterTableViewController.m */,
 				8949F749188DDD090069E9D4 /* SFMasterViewController.h */,
 				8949F74A188DDD090069E9D4 /* SFMasterViewController.m */,
 				8949F74C188DDD090069E9D4 /* SFDetailViewController.h */,
@@ -303,9 +318,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */,
+				8949F781188DFE260069E9D4 /* SFInTheaterTableViewController.m in Sources */,
 				8949F77B188DF3040069E9D4 /* SFFilmDataController.m in Sources */,
 				8949F748188DDD090069E9D4 /* FilmHeat.xcdatamodeld in Sources */,
 				8949F73E188DDD090069E9D4 /* main.m in Sources */,
+				898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				8949F74B188DDD090069E9D4 /* SFMasterViewController.m in Sources */,
