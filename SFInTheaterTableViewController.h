@@ -10,6 +10,9 @@
 #import "FilmModel.h"
 #import "SFFilmModelDataController.h"
 
-@interface SFInTheaterTableViewController : UITableViewController
+@interface SFInTheaterTableViewController : UITableViewController <UIActionSheetDelegate>
+
+@property (nonatomic) SFFilmModelDataController *theaterFilmsController;
+
 
 @end

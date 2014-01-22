@@ -129,10 +129,10 @@
             </objects>
             <point key="canvasLocation" x="-888" y="549"/>
         </scene>
-        <!--Films I've Seen-->
+        <!--Films in Theaters-->
         <scene sceneID="Ei6-gS-SLH">
             <objects>
-                <tableViewController id="sKA-Fm-tkg" userLabel="Films I've Seen" customClass="SFInTheaterTableViewController" sceneMemberID="viewController">
+                <tableViewController id="sKA-Fm-tkg" userLabel="Films in Theaters" customClass="SFInTheaterTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" id="4Q3-to-Syj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,41 +146,46 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kch-qC-Xxk">
-                                            <rect key="frame" x="20" y="20" width="267" height="21"/>
+                                            <rect key="frame" x="81" y="12" width="206" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-yK-HMa">
-                                            <rect key="frame" x="46" y="53" width="42" height="21"/>
+                                            <rect key="frame" x="107" y="48" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="C:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVF-Ew-sO3">
-                                            <rect key="frame" x="20" y="53" width="18" height="21"/>
+                                            <rect key="frame" x="81" y="48" width="18" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMs-rm-Fel">
-                                            <rect key="frame" x="199" y="53" width="16" height="21"/>
+                                            <rect key="frame" x="201" y="48" width="16" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dD-Qd-fkG">
-                                            <rect key="frame" x="225" y="53" width="42" height="21"/>
+                                            <rect key="frame" x="225" y="48" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7cJ-y8-wlR">
+                                            <rect key="frame" x="7" y="0.0" width="65" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="filmAudienceRating" destination="0dD-Qd-fkG" id="cCL-aB-poV"/>
                                     <outlet property="filmCriticRating" destination="zGm-yK-HMa" id="KIF-os-HXs"/>
+                                    <outlet property="filmThumbnailPoster" destination="7cJ-y8-wlR" id="Y8b-wT-WuT"/>
                                     <outlet property="filmTitle" destination="kch-qC-Xxk" id="8pK-Fm-2Uf"/>
                                 </connections>
                             </tableViewCell>
@@ -190,7 +195,13 @@
                             <outlet property="delegate" destination="sKA-Fm-tkg" id="qep-Ll-Utf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Films in Theaters" id="xbG-Vg-Psb"/>
+                    <navigationItem key="navigationItem" title="Films in Theaters" id="xbG-Vg-Psb">
+                        <barButtonItem key="rightBarButtonItem" title="Sort" id="kpb-gD-7EE">
+                            <connections>
+                                <action selector="sortNames:" destination="sKA-Fm-tkg" id="HZu-HD-K2V"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lt-9F-kR2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

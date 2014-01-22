@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString *filmTitle;
 @property (strong, nonatomic) NSNumber *filmAudienceRating;
 @property (strong, nonatomic) NSNumber *filmCriticsRating;
+@property (strong, nonatomic) NSString *filmThumbnailPoster;
 
 //@property (strong, nonatomic) NSString *filmAudienceRating;
 //@property (strong, nonatomic) NSString *filmCriticsRating;

@@ -69,16 +69,18 @@
         
         //Set the film title
         film.filmTitle = [dictionary objectForKey:@"title"];
-        NSLog(@"%@", film.filmTitle);
+        //NSLog(@"%@", film.filmTitle);
         
         //Set the critics rating of the film according to Rotten Tomatoes
-        NSLog(@" %@",[dictionary valueForKeyPath:@"ratings.critics_score"] );
+        //NSLog(@" %@",[dictionary valueForKeyPath:@"ratings.critics_score"] );
         
         film.filmCriticsRating = [dictionary valueForKeyPath:@"ratings.critics_score"];
         
         //Set the audience rating of the film according to Rotten Tomatoes
         film.filmAudienceRating = [dictionary valueForKeyPath:@"ratings.audience_score"];
-        NSLog(@"%@", film.filmAudienceRating);
+        
+        film.filmThumbnailPoster = [dictionary valueForKeyPath:@"posters.thumbnail"];
+        //NSLog(@"%@", film.filmThumbnailPoster);
         
         [_rottenMutableArray addObject:film];
     }

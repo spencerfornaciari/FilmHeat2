@@ -33,6 +33,12 @@
     self.filmTitle.text = film.filmTitle;
     self.filmCriticRating.text = [film.filmCriticsRating stringValue];
     self.filmAudienceRating.text = [film.filmAudienceRating stringValue];
+    
+    NSURL *url = [NSURL URLWithString:film.filmThumbnailPoster];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData:data];
+    
+    self.filmThumbnailPoster.image = image;
 }
 
 @end

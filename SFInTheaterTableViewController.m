@@ -10,7 +10,6 @@
 
 @interface SFInTheaterTableViewController ()
 
-@property (nonatomic) SFFilmModelDataController *theaterFilmsController;
 
 @end
 
@@ -108,5 +107,47 @@
 }
 
  */
+
+#pragma mark - UIActionSheet
+
+- (IBAction)sortNames:(id)sender {
+    
+    //Create the UIAction sheet and display it
+    UIActionSheet *sortOptions = [[UIActionSheet alloc] initWithTitle:@"Sort Options"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil otherButtonTitles:@"Critic Rating", @"Audience Rating", nil];
+    
+    [sortOptions showInView:self.view];
+}
+
+// Responses to UIActionSheet selections
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+                NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"filmCriticsRating" ascending:NO];
+                self.theaterFilmsController.sortedMutableArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenMutableArray sortedArrayUsingDescriptors:@[nameSorter]]];
+            NSLog(@"Critics");
+            
+                    [self.tableView reloadData];
+        }
+            break;
+            
+        case 1:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"filmAudienceRating" ascending:NO];
+            self.theaterFilmsController.sortedMutableArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenMutableArray sortedArrayUsingDescriptors:@[nameSorter]]];
+            NSLog(@"Audiences");
+            
+            [self.tableView reloadData];
+        }
+            
+            break;
+    }
+}
+
 
 @end
