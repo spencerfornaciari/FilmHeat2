@@ -129,7 +129,7 @@
         case 0:
         {
                 NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"filmCriticsRating" ascending:NO];
-                self.theaterFilmsController.sortedMutableArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenMutableArray sortedArrayUsingDescriptors:@[nameSorter]]];
+                self.theaterFilmsController.rottenMutableArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenMutableArray sortedArrayUsingDescriptors:@[nameSorter]]];
             NSLog(@"Critics");
             
                     [self.tableView reloadData];
@@ -139,7 +139,7 @@
         case 1:
         {
             NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"filmAudienceRating" ascending:NO];
-            self.theaterFilmsController.sortedMutableArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenMutableArray sortedArrayUsingDescriptors:@[nameSorter]]];
+            self.theaterFilmsController.rottenMutableArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenMutableArray sortedArrayUsingDescriptors:@[nameSorter]]];
             NSLog(@"Audiences");
             
             [self.tableView reloadData];

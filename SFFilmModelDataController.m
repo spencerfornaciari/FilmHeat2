@@ -12,11 +12,6 @@
 
 - (void)populateFilmData
 {
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
-    
     _seenItArray = [[NSMutableArray alloc] init];
     
     NSString *rottenString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=sxqdwkta4vvwcggqmm5ggja7";
@@ -69,34 +64,41 @@
         
         //Set the film title
         film.filmTitle = [dictionary objectForKey:@"title"];
-        //NSLog(@"%@", film.filmTitle);
         
         //Set the critics rating of the film according to Rotten Tomatoes
-        //NSLog(@" %@",[dictionary valueForKeyPath:@"ratings.critics_score"] );
-        
         film.filmCriticsRating = [dictionary valueForKeyPath:@"ratings.critics_score"];
         
         //Set the audience rating of the film according to Rotten Tomatoes
         film.filmAudienceRating = [dictionary valueForKeyPath:@"ratings.audience_score"];
         
+        //Grab the URL for the thumbnail of the film's poster
         film.filmThumbnailPoster = [dictionary valueForKeyPath:@"posters.thumbnail"];
-        //NSLog(@"%@", film.filmThumbnailPoster);
+        
+        //Set the film runtime
+        film.filmRuntime = [dictionary valueForKeyPath:@"runtime"];
+        
+        //Set the film's MPAA rating
+        film.filmMPAARating = [dictionary valueForKeyPath:@"mpaa_rating"];
+        
+        //Set the film's synopsis
+        film.filmSynopsis = [dictionary valueForKeyPath:@"synopsis"];
+        
+        //Set the path to the film's IMDb page
+        film.filmIMDb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
         
         [_rottenMutableArray addObject:film];
     }
     
     //Sort the film objects by the critics rating
-    NSSortDescriptor *rottenDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filmCriticsRating" ascending:NO];
-    NSArray *sortDescriptors = @[rottenDescriptor];
-    _sortedArray = [_rottenMutableArray sortedArrayUsingDescriptors:sortDescriptors];
-    _sortedMutableArray = [NSMutableArray arrayWithArray:_sortedArray];
+    NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"filmCriticsRating" ascending:NO];
+    _rottenMutableArray = [NSMutableArray arrayWithArray:[_rottenMutableArray sortedArrayUsingDescriptors:@[nameSorter]]];
 
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _sortedMutableArray.count;
+    return _rottenMutableArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,8 +106,7 @@
     SFFilmTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    [cell setFilm:_sortedMutableArray[indexPath.row]];
-    //cell.textLabel.text = [_sortedMutableArray[indexPath.row] filmTitle];
+    [cell setFilm:_rottenMutableArray[indexPath.row]];
     
     return cell;
 }

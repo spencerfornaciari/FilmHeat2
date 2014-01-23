@@ -94,11 +94,11 @@
             </objects>
             <point key="canvasLocation" x="1587" y="64"/>
         </scene>
-        <!--Navigation Controller - Films in Theaters-->
+        <!--Navigation Controller - Films I've Seen-->
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController id="rS3-R9-Ivy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Films in Theaters" id="7v5-qH-ggL"/>
+                    <tabBarItem key="tabBarItem" title="Films I've Seen" id="7v5-qH-ggL"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yXu-0R-QUA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -121,8 +121,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="rS3-R9-Ivy" kind="relationship" relationship="viewControllers" id="ReD-Us-jWc"/>
                         <segue destination="6zP-8Y-p7y" kind="relationship" relationship="viewControllers" id="fvh-B9-i3n"/>
+                        <segue destination="rS3-R9-Ivy" kind="relationship" relationship="viewControllers" id="ReD-Us-jWc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYi-LB-HXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -312,11 +312,11 @@
             </objects>
             <point key="canvasLocation" x="806" y="344"/>
         </scene>
-        <!--Navigation Controller - Film's I've Seen-->
+        <!--Navigation Controller - Films in Theaters-->
         <scene sceneID="Ej8-jj-hSu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6zP-8Y-p7y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Film's I've Seen" id="2qj-rM-oxa"/>
+                    <tabBarItem key="tabBarItem" title="Films in Theaters" id="2qj-rM-oxa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CX8-RZ-xFp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

@@ -14,8 +14,11 @@
 @property (strong, nonatomic) NSNumber *filmAudienceRating;
 @property (strong, nonatomic) NSNumber *filmCriticsRating;
 @property (strong, nonatomic) NSString *filmThumbnailPoster;
+@property (strong, nonatomic) NSString *filmIMDb;
+@property (strong, nonatomic) NSNumber *filmRuntime;
+@property (strong, nonatomic) NSString *filmSynopsis;
+@property (strong, nonatomic) NSString *filmMPAARating;
+@property (strong, nonatomic) NSNumber *filmReleaseYear;
 
-//@property (strong, nonatomic) NSString *filmAudienceRating;
-//@property (strong, nonatomic) NSString *filmCriticsRating;
 
 @end
