@@ -8,8 +8,6 @@
 
 #import "SFMasterViewController.h"
 
-#import "SFDetailViewController.h"
-
 @interface SFMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
@@ -45,7 +43,7 @@
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    //[newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
     
     // Save the context.
     NSError *error = nil;
@@ -105,14 +103,14 @@
     return NO;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+//        [[segue destinationViewController] setDetailItem:object];
+//    }
+//}
 
 #pragma mark - Fetched results controller
 

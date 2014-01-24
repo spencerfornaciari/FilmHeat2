@@ -17,7 +17,6 @@
 		8949F745188DDD090069E9D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8949F743188DDD090069E9D4 /* Main.storyboard */; };
 		8949F748188DDD090069E9D4 /* FilmHeat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8949F746188DDD090069E9D4 /* FilmHeat.xcdatamodeld */; };
 		8949F74B188DDD090069E9D4 /* SFMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F74A188DDD090069E9D4 /* SFMasterViewController.m */; };
-		8949F74E188DDD090069E9D4 /* SFDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F74D188DDD090069E9D4 /* SFDetailViewController.m */; };
 		8949F750188DDD090069E9D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8949F74F188DDD090069E9D4 /* Images.xcassets */; };
 		8949F757188DDD090069E9D4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F756188DDD090069E9D4 /* XCTest.framework */; };
 		8949F758188DDD090069E9D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F72F188DDD090069E9D4 /* Foundation.framework */; };
@@ -59,8 +58,6 @@
 		8949F747188DDD090069E9D4 /* FilmHeat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FilmHeat.xcdatamodel; sourceTree = "<group>"; };
 		8949F749188DDD090069E9D4 /* SFMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFMasterViewController.h; sourceTree = "<group>"; };
 		8949F74A188DDD090069E9D4 /* SFMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFMasterViewController.m; sourceTree = "<group>"; };
-		8949F74C188DDD090069E9D4 /* SFDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFDetailViewController.h; sourceTree = "<group>"; };
-		8949F74D188DDD090069E9D4 /* SFDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFDetailViewController.m; sourceTree = "<group>"; };
 		8949F74F188DDD090069E9D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8949F755188DDD090069E9D4 /* FilmHeatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilmHeatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8949F756188DDD090069E9D4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -210,8 +207,6 @@
 				8949F780188DFE260069E9D4 /* SFInTheaterTableViewController.m */,
 				8949F749188DDD090069E9D4 /* SFMasterViewController.h */,
 				8949F74A188DDD090069E9D4 /* SFMasterViewController.m */,
-				8949F74C188DDD090069E9D4 /* SFDetailViewController.h */,
-				8949F74D188DDD090069E9D4 /* SFDetailViewController.m */,
 				8949F770188DE1450069E9D4 /* SFTabBarController.h */,
 				8949F771188DE1460069E9D4 /* SFTabBarController.m */,
 				8949F779188DF3040069E9D4 /* SFFilmDataController.h */,
@@ -327,7 +322,6 @@
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				8949F74B188DDD090069E9D4 /* SFMasterViewController.m in Sources */,
-				8949F74E188DDD090069E9D4 /* SFDetailViewController.m in Sources */,
 				8949F775188DF2530069E9D4 /* FilmModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

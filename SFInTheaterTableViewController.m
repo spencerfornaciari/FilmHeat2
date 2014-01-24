@@ -9,7 +9,9 @@
 #import "SFInTheaterTableViewController.h"
 
 @interface SFInTheaterTableViewController ()
-
+{
+    NSMutableArray *myArray;
+}
 
 @end
 
@@ -35,6 +37,7 @@
     self.tableView.dataSource = self.theaterFilmsController;
     
     [self.theaterFilmsController populateFilmData];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -144,10 +147,18 @@
             
             [self.tableView reloadData];
         }
-            
             break;
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Row selected");
+    [myArray addObject:self.theaterFilmsController.rottenMutableArray[indexPath.row]];
+    NSLog(@"%@", [self.theaterFilmsController.rottenMutableArray[indexPath.row] filmTitle]);
+    [self.theaterFilmsController.rottenMutableArray removeObjectAtIndex:indexPath.row];
+    
+    [self.tableView reloadData];
+}
 
 @end
