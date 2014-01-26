@@ -30,11 +30,11 @@
 {
     _film = film;
     
-    self.filmTitle.text = film.filmTitle;
-    self.filmCriticRating.text = [film.filmCriticsRating stringValue];
-    self.filmAudienceRating.text = [film.filmAudienceRating stringValue];
+    self.filmTitle.text = film.title;
+    self.filmCriticRating.text = [film.criticsRating stringValue];
+    self.filmAudienceRating.text = [film.audienceRating stringValue];
     
-    NSURL *url = [NSURL URLWithString:film.filmThumbnailPoster];
+    NSURL *url = [NSURL URLWithString:film.thumbnailPoster];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
     

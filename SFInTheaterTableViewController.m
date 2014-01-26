@@ -131,8 +131,8 @@
     {
         case 0:
         {
-                NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"filmCriticsRating" ascending:NO];
-                self.theaterFilmsController.rottenMutableArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenMutableArray sortedArrayUsingDescriptors:@[nameSorter]]];
+                NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"criticsRating" ascending:NO];
+                self.theaterFilmsController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
             NSLog(@"Critics");
             
                     [self.tableView reloadData];
@@ -141,8 +141,8 @@
             
         case 1:
         {
-            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"filmAudienceRating" ascending:NO];
-            self.theaterFilmsController.rottenMutableArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenMutableArray sortedArrayUsingDescriptors:@[nameSorter]]];
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"audienceRating" ascending:NO];
+            self.theaterFilmsController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
             NSLog(@"Audiences");
             
             [self.tableView reloadData];
@@ -154,9 +154,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Row selected");
-    [myArray addObject:self.theaterFilmsController.rottenMutableArray[indexPath.row]];
-    NSLog(@"%@", [self.theaterFilmsController.rottenMutableArray[indexPath.row] filmTitle]);
-    [self.theaterFilmsController.rottenMutableArray removeObjectAtIndex:indexPath.row];
+    [myArray addObject:self.theaterFilmsController.rottenTomatoesArray[indexPath.row]];
+    NSLog(@"%@", [self.theaterFilmsController.rottenTomatoesArray[indexPath.row] filmTitle]);
+    [self.theaterFilmsController.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
     
     [self.tableView reloadData];
 }

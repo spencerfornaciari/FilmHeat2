@@ -12,7 +12,7 @@
 
 @interface SFFilmModelDataController : NSObject <UITableViewDataSource>
 
-@property (nonatomic) NSMutableArray *rottenMutableArray, *sortedMutableArray, *seenItArray;
+@property (nonatomic) NSMutableArray *rottenTomatoesArray, *sortedRottenTomatoesArray, *seenItArray;
 @property (nonatomic) NSArray *sortedArray;
 
 - (void)populateFilmData;
