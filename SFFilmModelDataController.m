@@ -66,12 +66,12 @@
         film.title = [dictionary objectForKey:@"title"];
         
         //Set the critics rating of the film according to Rotten Tomatoes
-        film.criticsRating = [dictionary valueForKeyPath:@"ratings.critics_score"];
+        film.criticsRating = [[dictionary valueForKeyPath:@"ratings.critics_score"] integerValue];
         
         //Set the audience rating of the film according to Rotten Tomatoes
-        film.audienceRating = [dictionary valueForKeyPath:@"ratings.audience_score"];
+        film.audienceRating = [[dictionary valueForKeyPath:@"ratings.audience_score"] integerValue];
         
-        film.ratingVariance = abs([film.criticsRating integerValue] - [film.audienceRating integerValue]);
+        film.ratingVariance = abs(film.criticsRating - film.audienceRating);
         NSLog(@"%i", film.ratingVariance);
         
         //Grab the URL for the thumbnail of the film's poster
