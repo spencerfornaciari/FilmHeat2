@@ -7,6 +7,7 @@
 //
 
 #import "SFFilmsHistoryTableViewController.h"
+#import "SFAppDelegate.h"
 
 @interface SFFilmsHistoryTableViewController ()
 
@@ -44,6 +45,7 @@
 - (void)insertNewObject:(id)sender
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
@@ -122,14 +124,27 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
+    
+    
+    
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
     
+    //NSEntityDescription *entity = [NSEntityDescription
+    //                               entityForName:@"History" inManagedObjectContext:context];
+    //NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//    for (NSManagedObject *info in fetchedObjects) {
+//        NSLog(@"Name: %@", [info valueForKey:@"title"]);
+
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    SFAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"History" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"History" inManagedObjectContext:  appDelegate.managedObjectContext];
     [fetchRequest setEntity:entity];
+
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
@@ -142,7 +157,7 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     

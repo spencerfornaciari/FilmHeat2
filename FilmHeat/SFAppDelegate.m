@@ -7,6 +7,7 @@
 //
 
 #import "SFAppDelegate.h"
+#import "SFFilmsHistoryTableViewController.h"
 
 @implementation SFAppDelegate
 
@@ -21,14 +22,14 @@
 //    UINavigationController *navigationController = tbc.viewControllers[1];
 //    SFMasterViewController *controller = (SFMasterViewController *)navigationController.topViewController;
 //    controller.managedObjectContext = self.managedObjectContext;
-//    NSManagedObjectContext *context = [self managedObjectContext];
+  // NSManagedObjectContext *context = [self managedObjectContext];
 //    NSManagedObject *failedBankInfo = [NSEntityDescription
 //                                       insertNewObjectForEntityForName:@"History"
 //                                       inManagedObjectContext:context];
-//    [failedBankInfo setValue:@"Test Bank" forKey:@"title"];
-//    //[failedBankInfo setValue:@"Testville" forKey:@"synopsis"];
-//    //[failedBankInfo setValue:@"Testland" forKey:@"mpaa"];
-//    
+//    [failedBankInfo setValue:@"Test Bank2" forKey:@"title"];
+//    [failedBankInfo setValue:@"Testville2" forKey:@"synopsis"];
+//    [failedBankInfo setValue:@"Testland2" forKey:@"mpaa"];
+//
 //    NSError *error;
 //    if (![context save:&error]) {
 //        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -41,9 +42,9 @@
 //    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
 //    for (NSManagedObject *info in fetchedObjects) {
 //        NSLog(@"Name: %@", [info valueForKey:@"title"]);
-//        //NSManagedObject *details = [info valueForKey:@"details"];
-//        //NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
-//    }
+        //NSManagedObject *details = [info valueForKey:@"details"];
+        //NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
+    //}
     
     //UINavigationController *navigationController = tbc.viewControllers[3];
     //MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
