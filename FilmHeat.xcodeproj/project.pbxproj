@@ -28,6 +28,8 @@
 		8949F775188DF2530069E9D4 /* FilmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F774188DF2530069E9D4 /* FilmModel.m */; };
 		8949F77B188DF3040069E9D4 /* SFFilmDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F77A188DF3040069E9D4 /* SFFilmDataController.m */; };
 		8949F781188DFE260069E9D4 /* SFInTheaterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949F780188DFE260069E9D4 /* SFInTheaterTableViewController.m */; };
+		895B49C91895E04F001874D5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895B49C81895E04F001874D5 /* MapKit.framework */; };
+		895B4A101895F3D8001874D5 /* SFFilmsHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 895B4A0F1895F3D8001874D5 /* SFFilmsHistoryTableViewController.m */; };
 		898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBA189080D20060E847 /* SFFilmModelDataController.m */; };
 		898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -72,6 +74,9 @@
 		8949F77A188DF3040069E9D4 /* SFFilmDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFFilmDataController.m; sourceTree = "<group>"; };
 		8949F77F188DFE260069E9D4 /* SFInTheaterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFInTheaterTableViewController.h; path = ../SFInTheaterTableViewController.h; sourceTree = "<group>"; };
 		8949F780188DFE260069E9D4 /* SFInTheaterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFInTheaterTableViewController.m; path = ../SFInTheaterTableViewController.m; sourceTree = "<group>"; };
+		895B49C81895E04F001874D5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		895B4A0E1895F3D8001874D5 /* SFFilmsHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmsHistoryTableViewController.h; path = ../SFFilmsHistoryTableViewController.h; sourceTree = "<group>"; };
+		895B4A0F1895F3D8001874D5 /* SFFilmsHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmsHistoryTableViewController.m; path = ../SFFilmsHistoryTableViewController.m; sourceTree = "<group>"; };
 		898F4CB9189080D20060E847 /* SFFilmModelDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmModelDataController.h; path = ../SFFilmModelDataController.h; sourceTree = "<group>"; };
 		898F4CBA189080D20060E847 /* SFFilmModelDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmModelDataController.m; path = ../SFFilmModelDataController.m; sourceTree = "<group>"; };
 		898F4CBC189082A90060E847 /* SFFilmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmTableViewCell.h; path = ../SFFilmTableViewCell.h; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 			files = (
 				8949F732188DDD090069E9D4 /* CoreGraphics.framework in Frameworks */,
 				8949F736188DDD090069E9D4 /* CoreData.framework in Frameworks */,
+				895B49C91895E04F001874D5 /* MapKit.framework in Frameworks */,
 				8949F734188DDD090069E9D4 /* UIKit.framework in Frameworks */,
 				8949F730188DDD090069E9D4 /* Foundation.framework in Frameworks */,
 			);
@@ -126,6 +132,7 @@
 		8949F72E188DDD090069E9D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				895B49C81895E04F001874D5 /* MapKit.framework */,
 				8949F72F188DDD090069E9D4 /* Foundation.framework */,
 				8949F731188DDD090069E9D4 /* CoreGraphics.framework */,
 				8949F733188DDD090069E9D4 /* UIKit.framework */,
@@ -201,6 +208,8 @@
 		8949F778188DF29C0069E9D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				895B4A0E1895F3D8001874D5 /* SFFilmsHistoryTableViewController.h */,
+				895B4A0F1895F3D8001874D5 /* SFFilmsHistoryTableViewController.m */,
 				898F4CB9189080D20060E847 /* SFFilmModelDataController.h */,
 				898F4CBA189080D20060E847 /* SFFilmModelDataController.m */,
 				8949F77F188DFE260069E9D4 /* SFInTheaterTableViewController.h */,
@@ -263,6 +272,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Spencer Fornaciari";
 				TargetAttributes = {
+					8949F72B188DDD090069E9D4 = {
+						SystemCapabilities = {
+							com.apple.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					8949F754188DDD090069E9D4 = {
 						TestTargetID = 8949F72B188DDD090069E9D4;
 					};
@@ -321,6 +337,7 @@
 				898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
+				895B4A101895F3D8001874D5 /* SFFilmsHistoryTableViewController.m in Sources */,
 				8949F74B188DDD090069E9D4 /* SFMasterViewController.m in Sources */,
 				8949F775188DF2530069E9D4 /* FilmModel.m in Sources */,
 			);

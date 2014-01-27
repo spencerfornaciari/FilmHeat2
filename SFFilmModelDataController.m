@@ -81,13 +81,13 @@
         film.runtime = [dictionary valueForKeyPath:@"runtime"];
         
         //Set the film's MPAA rating
-        film.MPAARating = [dictionary valueForKeyPath:@"mpaa_rating"];
+        film.mpaaRating = [dictionary valueForKeyPath:@"mpaa_rating"];
         
         //Set the film's synopsis
         film.synopsis = [dictionary valueForKeyPath:@"synopsis"];
         
         //Set the path to the film's IMDb page
-        film.IMDb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
+        film.imdb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
         
         [_rottenTomatoesArray addObject:film];
     }

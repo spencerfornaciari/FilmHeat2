@@ -15,10 +15,10 @@
 @property (nonatomic) NSInteger criticsRating;
 @property (nonatomic) NSInteger ratingVariance;
 @property (strong, nonatomic) NSString *thumbnailPoster;
-@property (strong, nonatomic) NSString *IMDb;
+@property (strong, nonatomic) NSString *imdb;
 @property (strong, nonatomic) NSNumber *runtime;
 @property (strong, nonatomic) NSString *synopsis;
-@property (strong, nonatomic) NSString *MPAARating;
+@property (strong, nonatomic) NSString *mpaaRating;
 @property (strong, nonatomic) NSNumber *releaseYear;
 
 
