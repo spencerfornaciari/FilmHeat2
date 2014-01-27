@@ -104,7 +104,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cSt-ZS-EGR">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cSt-ZS-EGR" id="OER-SC-Kkz">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -117,10 +117,11 @@
                             <outlet property="delegate" destination="SFW-0T-CSY" id="v35-Gh-GSf"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="oyG-Gn-iHl"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wqg-gJ-gd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="81" y="-506"/>
+            <point key="canvasLocation" x="761" y="902"/>
         </scene>
         <!--Navigation Controller - Films I've Seen-->
         <scene sceneID="cUi-kZ-frf">
@@ -193,13 +194,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMs-rm-Fel">
-                                            <rect key="frame" x="201" y="48" width="16" height="21"/>
+                                            <rect key="frame" x="160" y="48" width="16" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dD-Qd-fkG">
-                                            <rect key="frame" x="225" y="48" width="42" height="21"/>
+                                            <rect key="frame" x="184" y="48" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
@@ -208,6 +209,20 @@
                                             <rect key="frame" x="7" y="0.0" width="65" height="81"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="V:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytO-Jj-5Zq" userLabel="Label - V:">
+                                            <rect key="frame" x="235" y="37" width="15" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5a-Km-Ile">
+                                            <rect key="frame" x="258" y="48" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -215,6 +230,7 @@
                                     <outlet property="filmCriticRating" destination="zGm-yK-HMa" id="KIF-os-HXs"/>
                                     <outlet property="filmThumbnailPoster" destination="7cJ-y8-wlR" id="Y8b-wT-WuT"/>
                                     <outlet property="filmTitle" destination="kch-qC-Xxk" id="8pK-Fm-2Uf"/>
+                                    <outlet property="ratingVariance" destination="F5a-Km-Ile" id="jYj-e8-aAp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -224,6 +240,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Films in Theaters" id="xbG-Vg-Psb">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="WfF-fW-a3C">
+                            <connections>
+                                <segue destination="SFW-0T-CSY" kind="push" id="qYB-px-Rxt"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Sort" id="kpb-gD-7EE">
                             <connections>
                                 <action selector="sortNames:" destination="sKA-Fm-tkg" id="HZu-HD-K2V"/>
@@ -254,10 +275,10 @@
             </objects>
             <point key="canvasLocation" x="1335" y="917"/>
         </scene>
-        <!--Master View Controller - Master-->
+        <!--Table View Controller - Master-->
         <scene sceneID="VgW-fR-Quf">
             <objects>
-                <tableViewController title="Master" id="pGg-6v-bdr" customClass="SFMasterViewController" sceneMemberID="viewController">
+                <tableViewController title="Master" id="pGg-6v-bdr" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mLL-gJ-YKr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -71,8 +71,8 @@
         //Set the audience rating of the film according to Rotten Tomatoes
         film.audienceRating = [[dictionary valueForKeyPath:@"ratings.audience_score"] integerValue];
         
+        //Calculating the difference between critic and audience rating
         film.ratingVariance = abs(film.criticsRating - film.audienceRating);
-        NSLog(@"%i", film.ratingVariance);
         
         //Grab the URL for the thumbnail of the film's poster
         film.thumbnailPoster = [dictionary valueForKeyPath:@"posters.thumbnail"];

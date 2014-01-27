@@ -33,11 +33,17 @@
     self.filmTitle.text = film.title;
     self.filmCriticRating.text = [[NSNumber numberWithInt:film.criticsRating] stringValue]; //[film.criticsRating stringValue];
     self.filmAudienceRating.text = [[NSNumber numberWithInt:film.audienceRating] stringValue];
+    self.ratingVariance.text = [[NSNumber numberWithInt:film.ratingVariance] stringValue];
     
     NSURL *url = [NSURL URLWithString:film.thumbnailPoster];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
     
+    CGFloat red = 20.f/255.f;
+    CGFloat green = 180.f/255.f;
+    CGFloat blue = 204.f/255.f;
+        
+    self.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
     self.filmThumbnailPoster.image = image;
 }
 

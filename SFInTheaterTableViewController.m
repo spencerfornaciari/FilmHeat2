@@ -119,7 +119,8 @@
     UIActionSheet *sortOptions = [[UIActionSheet alloc] initWithTitle:@"Sort Options"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil otherButtonTitles:@"Critic Rating", @"Audience Rating", nil];
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Critic Rating", @"Audience Rating", @"Rating Variance", nil];
     
     [sortOptions showInView:self.view];
 }
@@ -133,7 +134,6 @@
         {
                 NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"criticsRating" ascending:NO];
                 self.theaterFilmsController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
-            NSLog(@"Critics");
             
                     [self.tableView reloadData];
         }
@@ -143,7 +143,15 @@
         {
             NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"audienceRating" ascending:NO];
             self.theaterFilmsController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
-            NSLog(@"Audiences");
+            
+            [self.tableView reloadData];
+        }
+            break;
+            
+        case 2:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:YES];
+            self.theaterFilmsController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterFilmsController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
             
             [self.tableView reloadData];
         }
