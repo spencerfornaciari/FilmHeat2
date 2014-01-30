@@ -27,7 +27,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uL5-ih-grk"/>
                                     <barButtonItem title="Settings" id="DhP-V3-URE">
                                         <connections>
-                                            <segue destination="WpT-pU-svM" kind="modal" id="xgm-G9-1hI"/>
+                                            <segue destination="WpT-pU-svM" kind="push" id="xgm-G9-1hI"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="XMm-Zr-64E"/>
@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="61" y="800"/>
         </scene>
-        <!--Scroll View Controller-->
+        <!--Root View Controller-->
         <scene sceneID="moP-c9-PH7">
             <objects>
-                <viewController id="1bJ-Gq-nnM" customClass="SFScrollViewController" sceneMemberID="viewController">
+                <viewController id="1bJ-Gq-nnM" userLabel="Root View Controller" customClass="SFScrollViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X3l-qh-PbE"/>
                         <viewControllerLayoutGuide type="bottom" id="Tgq-sY-i1M"/>
@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSC-KL-Owd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-60" y="-529"/>
+            <point key="canvasLocation" x="944" y="-597"/>
         </scene>
         <!--Films in Theaters-->
         <scene sceneID="Ei6-gS-SLH">
@@ -96,7 +96,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kch-qC-Xxk">
-                                            <rect key="frame" x="81" y="12" width="206" height="21"/>
+                                            <rect key="frame" x="89" y="8" width="206" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -129,7 +129,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7cJ-y8-wlR">
-                                            <rect key="frame" x="7" y="0.0" width="65" height="81"/>
+                                            <rect key="frame" x="8" y="0.0" width="65" height="81"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="V:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytO-Jj-5Zq" userLabel="Label - V:">
@@ -162,9 +162,9 @@
                             <outlet property="delegate" destination="sKA-Fm-tkg" id="qep-Ll-Utf"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Films in Theaters" id="xbG-Vg-Psb">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="WfF-fW-a3C"/>
-                        <barButtonItem key="rightBarButtonItem" title="Sort" id="kpb-gD-7EE">
+                        <barButtonItem key="leftBarButtonItem" title="Sort" id="kpb-gD-7EE">
                             <connections>
                                 <action selector="sortNames:" destination="sKA-Fm-tkg" id="HZu-HD-K2V"/>
                             </connections>
@@ -175,24 +175,24 @@
             </objects>
             <point key="canvasLocation" x="883" y="136"/>
         </scene>
-        <!--Table View Controller - Master-->
+        <!--History Table View Controller - Master-->
         <scene sceneID="VgW-fR-Quf">
             <objects>
-                <tableViewController title="Master" id="pGg-6v-bdr" sceneMemberID="viewController">
+                <tableViewController title="Master" id="pGg-6v-bdr" customClass="SFHistoryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mLL-gJ-YKr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2pz-XF-uhl" style="IBUITableViewCellStyleDefault" id="m0d-ak-lc9" customClass="SFFilmTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2pz-XF-uhl" style="IBUITableViewCellStyleDefault" id="m0d-ak-lc9" customClass="SFFilmTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0d-ak-lc9" id="tH8-AJ-Syj">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2pz-XF-uhl">
-                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -201,6 +201,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="cxH-06-Oyj" kind="push" id="Bfx-jQ-dUa"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -214,6 +217,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1861" y="136"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="x45-f3-r3O">
+            <objects>
+                <viewController id="cxH-06-Oyj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wUd-ey-VcZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="KqY-nz-K8N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DJv-Gl-Pdr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OTP-YU-WG9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="685-Is-nZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2237" y="130"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rMl-Ry-373">

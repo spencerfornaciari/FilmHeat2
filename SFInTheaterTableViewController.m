@@ -11,22 +11,11 @@
 @interface SFInTheaterTableViewController ()
 {
     NSMutableArray *myArray;
-    NSInteger myPosition;
-    NSString *myText;
 }
 
 @end
 
 @implementation SFInTheaterTableViewController
-
-- (id)initWithPosition:(NSInteger)position text:(NSString*)text
-{
-    if (self = [super init]) {
-        myPosition = position;
-        myText = text;
-    }
-    return self;
-}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,9 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(320*myPosition, 0, 320, 460)];
-    self.view = view;
     
     self.theaterFilmsController = [SFFilmModelDataController new];
     

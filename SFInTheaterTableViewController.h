@@ -14,6 +14,6 @@
 
 @property (nonatomic) SFFilmModelDataController *theaterFilmsController;
 
-- (id)initWithPosition:(NSInteger)position text:(NSString*)text;
+- (IBAction)sortNames:(id)sender;
 
 @end

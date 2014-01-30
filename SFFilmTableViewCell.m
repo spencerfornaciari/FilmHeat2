@@ -46,11 +46,6 @@
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
     
-    CGFloat red = 20.f/255.f;
-    CGFloat green = 180.f/255.f;
-    CGFloat blue = 204.f/255.f;
-    
-    //self.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
     self.backgroundColor = [UIColor grayColor];
     self.filmThumbnailPoster.image = image;
 }
