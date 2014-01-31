@@ -114,13 +114,21 @@
 - (IBAction)sortNames:(id)sender {
     
     //Create the UIAction sheet and display it
-    UIActionSheet *sortOptions = [[UIActionSheet alloc] initWithTitle:@"Sort Options"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Critic Rating", @"Audience Rating", @"Rating Variance", nil];
+    NSLog(@"Bar button pressed");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert"
+                                                    message:@"View"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:nil, nil];
+    [alert show];
     
-    [sortOptions showInView:self.view];
+//    UIActionSheet *sortOptions = [[UIActionSheet alloc] initWithTitle:@"Sort Options"
+//                                                             delegate:self
+//                                                    cancelButtonTitle:@"Cancel"
+//                                               destructiveButtonTitle:nil
+//                                                    otherButtonTitles:@"Critic Rating", @"Audience Rating", @"Rating Variance", nil];
+//    
+//    [sortOptions showInView:self.view];
 }
 
 // Responses to UIActionSheet selections

@@ -7,8 +7,6 @@
 //
 
 #import "SFAppDelegate.h"
-#import "SFFilmsHistoryTableViewController.h"
-
 @implementation SFAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;

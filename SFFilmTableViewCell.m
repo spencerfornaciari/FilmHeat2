@@ -31,23 +31,25 @@
     _film = film;
     
     self.filmTitle.text = film.title;
-    self.filmTitle.textColor = [UIColor whiteColor];
+    //self.filmTitle.textColor = [UIColor whiteColor];
     
     self.filmCriticRating.text = [[NSNumber numberWithInt:film.criticsRating] stringValue];
-    self.filmCriticRating.textColor = [UIColor whiteColor];
+    //self.filmCriticRating.textColor = [UIColor whiteColor];
     
     self.filmAudienceRating.text = [[NSNumber numberWithInt:film.audienceRating] stringValue];
-    self.filmAudienceRating.textColor = [UIColor whiteColor];
+    //self.filmAudienceRating.textColor = [UIColor whiteColor];
     
     self.ratingVariance.text = [[NSNumber numberWithInt:film.ratingVariance] stringValue];
-    self.ratingVariance.textColor = [UIColor whiteColor];
+    //self.ratingVariance.textColor = [UIColor whiteColor];
     
     NSURL *url = [NSURL URLWithString:film.thumbnailPoster];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
     
-    self.backgroundColor = [UIColor grayColor];
+    //self.backgroundColor = [UIColor grayColor];
     self.filmThumbnailPoster.image = image;
+    self.filmThumbnailPoster.layer.cornerRadius = 32.f;
+    self.filmThumbnailPoster.layer.masksToBounds = YES;
 }
 
 @end
