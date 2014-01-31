@@ -102,6 +102,7 @@
 {
     // Return the number of rows in the section.
     return _rottenTomatoesArray.count;
+    NSLog(@"%lu", (unsigned long)_rottenTomatoesArray.count);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -10,7 +10,7 @@
 #import "FilmModel.h"
 #import "SFFilmTableViewCell.h"
 
-@interface SFFilmModelDataController : NSObject <UITableViewDataSource>
+@interface SFFilmModelDataController : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSMutableArray *rottenTomatoesArray, *sortedRottenTomatoesArray, *seenItArray;
 @property (nonatomic) NSArray *sortedArray;

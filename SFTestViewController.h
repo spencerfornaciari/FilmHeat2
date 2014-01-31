@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SFFilmModelDataController.h"
+#import "SFFilmModelDataController.h"
 
-@interface SFTestViewController : UIViewController
+@interface SFTestViewController : UIViewController <UISearchBarDelegate, UIActionSheetDelegate>
 
 @end

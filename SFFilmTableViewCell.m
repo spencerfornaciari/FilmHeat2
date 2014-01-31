@@ -48,8 +48,6 @@
     
     //self.backgroundColor = [UIColor grayColor];
     self.filmThumbnailPoster.image = image;
-    self.filmThumbnailPoster.layer.cornerRadius = 32.f;
-    self.filmThumbnailPoster.layer.masksToBounds = YES;
 }
 
 @end
