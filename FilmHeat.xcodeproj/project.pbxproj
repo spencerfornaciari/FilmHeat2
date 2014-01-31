@@ -30,6 +30,13 @@
 		895B49C91895E04F001874D5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895B49C81895E04F001874D5 /* MapKit.framework */; };
 		897EB4DB1899CEAB007D43F3 /* SFScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897EB4DA1899CEAA007D43F3 /* SFScrollViewController.m */; };
 		897EB4DE1899DAF1007D43F3 /* SFHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897EB4DD1899DAF1007D43F3 /* SFHistoryTableViewController.m */; };
+		897EB575189B2DD0007D43F3 /* SFTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897EB574189B2DD0007D43F3 /* SFTestViewController.m */; };
+		897EB577189B300B007D43F3 /* Mobile_Signal.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB576189B300B007D43F3 /* Mobile_Signal.png */; };
+		897EB579189B301F007D43F3 /* Mobile_Signal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB578189B301F007D43F3 /* Mobile_Signal@2x.png */; };
+		897EB57C189B3060007D43F3 /* Movies@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB57A189B3060007D43F3 /* Movies@2x.png */; };
+		897EB57D189B3060007D43F3 /* Music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB57B189B3060007D43F3 /* Music@2x.png */; };
+		897EB580189B306C007D43F3 /* Movies.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB57E189B306C007D43F3 /* Movies.png */; };
+		897EB581189B306C007D43F3 /* Music.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB57F189B306C007D43F3 /* Music.png */; };
 		898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBA189080D20060E847 /* SFFilmModelDataController.m */; };
 		898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -77,6 +84,14 @@
 		897EB4DA1899CEAA007D43F3 /* SFScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFScrollViewController.m; path = ../SFScrollViewController.m; sourceTree = "<group>"; };
 		897EB4DC1899DAF0007D43F3 /* SFHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHistoryTableViewController.h; path = ../SFHistoryTableViewController.h; sourceTree = "<group>"; };
 		897EB4DD1899DAF1007D43F3 /* SFHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHistoryTableViewController.m; path = ../SFHistoryTableViewController.m; sourceTree = "<group>"; };
+		897EB573189B2DD0007D43F3 /* SFTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTestViewController.h; path = ../SFTestViewController.h; sourceTree = "<group>"; };
+		897EB574189B2DD0007D43F3 /* SFTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTestViewController.m; path = ../SFTestViewController.m; sourceTree = "<group>"; };
+		897EB576189B300B007D43F3 /* Mobile_Signal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mobile_Signal.png; sourceTree = "<group>"; };
+		897EB578189B301F007D43F3 /* Mobile_Signal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mobile_Signal@2x.png"; sourceTree = "<group>"; };
+		897EB57A189B3060007D43F3 /* Movies@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Movies@2x.png"; sourceTree = "<group>"; };
+		897EB57B189B3060007D43F3 /* Music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Music@2x.png"; sourceTree = "<group>"; };
+		897EB57E189B306C007D43F3 /* Movies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Movies.png; sourceTree = "<group>"; };
+		897EB57F189B306C007D43F3 /* Music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Music.png; sourceTree = "<group>"; };
 		898F4CB9189080D20060E847 /* SFFilmModelDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmModelDataController.h; path = ../SFFilmModelDataController.h; sourceTree = "<group>"; };
 		898F4CBA189080D20060E847 /* SFFilmModelDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmModelDataController.m; path = ../SFFilmModelDataController.m; sourceTree = "<group>"; };
 		898F4CBC189082A90060E847 /* SFFilmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmTableViewCell.h; path = ../SFFilmTableViewCell.h; sourceTree = "<group>"; };
@@ -145,6 +160,14 @@
 		8949F737188DDD090069E9D4 /* FilmHeat */ = {
 			isa = PBXGroup;
 			children = (
+				897EB57E189B306C007D43F3 /* Movies.png */,
+				897EB57F189B306C007D43F3 /* Music.png */,
+				897EB57A189B3060007D43F3 /* Movies@2x.png */,
+				897EB57B189B3060007D43F3 /* Music@2x.png */,
+				897EB578189B301F007D43F3 /* Mobile_Signal@2x.png */,
+				897EB576189B300B007D43F3 /* Mobile_Signal.png */,
+				897EB573189B2DD0007D43F3 /* SFTestViewController.h */,
+				897EB574189B2DD0007D43F3 /* SFTestViewController.m */,
 				897EB4D91899CEAA007D43F3 /* SFScrollViewController.h */,
 				897EB4DA1899CEAA007D43F3 /* SFScrollViewController.m */,
 				8949F778188DF29C0069E9D4 /* Controller */,
@@ -308,8 +331,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897EB581189B306C007D43F3 /* Music.png in Resources */,
+				897EB580189B306C007D43F3 /* Movies.png in Resources */,
+				897EB57D189B3060007D43F3 /* Music@2x.png in Resources */,
 				8949F750188DDD090069E9D4 /* Images.xcassets in Resources */,
+				897EB577189B300B007D43F3 /* Mobile_Signal.png in Resources */,
 				8949F73C188DDD090069E9D4 /* InfoPlist.strings in Resources */,
+				897EB57C189B3060007D43F3 /* Movies@2x.png in Resources */,
+				897EB579189B301F007D43F3 /* Mobile_Signal@2x.png in Resources */,
 				8949F745188DDD090069E9D4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +363,7 @@
 				8949F77B188DF3040069E9D4 /* SFFilmDataController.m in Sources */,
 				8949F748188DDD090069E9D4 /* FilmHeat.xcdatamodeld in Sources */,
 				8949F73E188DDD090069E9D4 /* main.m in Sources */,
+				897EB575189B2DD0007D43F3 /* SFTestViewController.m in Sources */,
 				898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
