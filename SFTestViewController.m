@@ -11,6 +11,8 @@
 @interface SFTestViewController ()
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
 
+- (IBAction)buttonAction:(id)sender;
+
 @end
 
 @implementation SFTestViewController
@@ -74,4 +76,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)buttonAction:(id)sender {
+    NSLog(@"Bar button");
+}
 @end
