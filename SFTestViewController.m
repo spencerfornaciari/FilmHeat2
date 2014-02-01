@@ -34,6 +34,10 @@
     [self.theaterController populateFilmData];
     _strongArray = self.theaterController.rottenTomatoesArray;
     
+    UITapGestureRecognizer* tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [tapBackground setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:tapBackground];
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -57,6 +61,8 @@
 }
 - (IBAction)selectedIndex:(id)sender {
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
+        
+        [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor redColor];
         NSLog(@"One");
         self.theaterController.rottenTomatoesArray = _strongArray;
@@ -66,6 +72,7 @@
         [self.theaterTableView reloadData];
         
     } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
+        [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor blueColor];
         
         NSLog(@"Two");
@@ -78,6 +85,7 @@
         
     } else if(self.segmentOutlet.selectedSegmentIndex == 2)
     {
+        [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor orangeColor];
         NSLog(@"Three");
         self.theaterController.rottenTomatoesArray = _strongArray;
@@ -157,6 +165,11 @@
     }
     
     [self.theaterTableView reloadData];
+}
+
+-(void) dismissKeyboard:(id)sender
+{
+    [self.view endEditing:YES];
 }
 
 @end

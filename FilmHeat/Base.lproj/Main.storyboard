@@ -87,7 +87,7 @@
         <!--Test View Controller-->
         <scene sceneID="pAc-Rq-bcP">
             <objects>
-                <viewController id="6bk-xU-MH5" customClass="SFTestViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="inTheaters" id="6bk-xU-MH5" customClass="SFTestViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rtJ-2v-nrg"/>
                         <viewControllerLayoutGuide type="bottom" id="N7g-Po-Zep"/>
@@ -392,7 +392,7 @@
         <!--Navigation Controller-->
         <scene sceneID="rMl-Ry-373">
             <objects>
-                <navigationController storyboardIdentifier="inTheaters" automaticallyAdjustsScrollViewInsets="NO" id="zu1-Ys-Usv" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zu1-Ys-Usv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vyi-s8-vfz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

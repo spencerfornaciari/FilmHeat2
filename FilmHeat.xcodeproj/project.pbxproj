@@ -40,6 +40,7 @@
 		897EB581189B306C007D43F3 /* Music.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB57F189B306C007D43F3 /* Music.png */; };
 		898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBA189080D20060E847 /* SFFilmModelDataController.m */; };
 		898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */; };
+		89A6F6C1189C7967002E1A21 /* SFMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A6F6C0189C7967002E1A21 /* SFMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		898F4CBA189080D20060E847 /* SFFilmModelDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmModelDataController.m; path = ../SFFilmModelDataController.m; sourceTree = "<group>"; };
 		898F4CBC189082A90060E847 /* SFFilmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmTableViewCell.h; path = ../SFFilmTableViewCell.h; sourceTree = "<group>"; };
 		898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmTableViewCell.m; path = ../SFFilmTableViewCell.m; sourceTree = "<group>"; };
+		89A6F6BF189C7967002E1A21 /* SFMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFMapViewController.h; path = ../SFMapViewController.h; sourceTree = "<group>"; };
+		89A6F6C0189C7967002E1A21 /* SFMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMapViewController.m; path = ../SFMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 		8949F737188DDD090069E9D4 /* FilmHeat */ = {
 			isa = PBXGroup;
 			children = (
+				89A6F6BF189C7967002E1A21 /* SFMapViewController.h */,
+				89A6F6C0189C7967002E1A21 /* SFMapViewController.m */,
 				894C50B2189C3BBA003F72C6 /* UIColor+SFFilmHeatColors.h */,
 				894C50B3189C3BBA003F72C6 /* UIColor+SFFilmHeatColors.m */,
 				897EB57E189B306C007D43F3 /* Movies.png */,
@@ -373,6 +378,7 @@
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				897EB4DB1899CEAB007D43F3 /* SFScrollViewController.m in Sources */,
+				89A6F6C1189C7967002E1A21 /* SFMapViewController.m in Sources */,
 				894C50B4189C3BBA003F72C6 /* UIColor+SFFilmHeatColors.m in Sources */,
 				8949F775188DF2530069E9D4 /* FilmModel.m in Sources */,
 				897EB4DE1899DAF1007D43F3 /* SFHistoryTableViewController.m in Sources */,
