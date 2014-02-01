@@ -41,6 +41,7 @@
 		898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBA189080D20060E847 /* SFFilmModelDataController.m */; };
 		898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */; };
 		89A6F6C1189C7967002E1A21 /* SFMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A6F6C0189C7967002E1A21 /* SFMapViewController.m */; };
+		89A6F6C4189C7D49002E1A21 /* TheaterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A6F6C3189C7D49002E1A21 /* TheaterModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,8 @@
 		898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmTableViewCell.m; path = ../SFFilmTableViewCell.m; sourceTree = "<group>"; };
 		89A6F6BF189C7967002E1A21 /* SFMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFMapViewController.h; path = ../SFMapViewController.h; sourceTree = "<group>"; };
 		89A6F6C0189C7967002E1A21 /* SFMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMapViewController.m; path = ../SFMapViewController.m; sourceTree = "<group>"; };
+		89A6F6C2189C7D49002E1A21 /* TheaterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterModel.h; sourceTree = "<group>"; };
+		89A6F6C3189C7D49002E1A21 /* TheaterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +230,8 @@
 			children = (
 				8949F773188DF2530069E9D4 /* FilmModel.h */,
 				8949F774188DF2530069E9D4 /* FilmModel.m */,
+				89A6F6C2189C7D49002E1A21 /* TheaterModel.h */,
+				89A6F6C3189C7D49002E1A21 /* TheaterModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				897EB575189B2DD0007D43F3 /* SFTestViewController.m in Sources */,
 				898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
+				89A6F6C4189C7D49002E1A21 /* TheaterModel.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				897EB4DB1899CEAB007D43F3 /* SFScrollViewController.m in Sources */,
 				89A6F6C1189C7967002E1A21 /* SFMapViewController.m in Sources */,

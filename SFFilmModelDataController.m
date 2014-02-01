@@ -8,13 +8,18 @@
 
 #import "SFFilmModelDataController.h"
 
+#define ROTTEN_TOMATOES_API @"sxqdwkta4vvwcggqmm5ggja7"
+
 @implementation SFFilmModelDataController
+{
+    NSMutableArray *myArray;
+}
 
 - (void)populateFilmData
 {
     _seenItArray = [[NSMutableArray alloc] init];
-    
-    NSString *rottenString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=sxqdwkta4vvwcggqmm5ggja7";
+
+    NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", ROTTEN_TOMATOES_API];
     
     NSURL *rottenURL = [[NSURL alloc] initWithString:rottenString];
     
@@ -34,7 +39,7 @@
     
     
     
-    //    NSString *tmsString = @"http://data.tmsapi.com/v1/movies/showings?startDate=2013-11-26&zip=98121&api_key=7f4sgppp533ecxvutkaqg243";
+    //    NSString *tmsString = @"http://data.tmsapi.com/v1/movies/showings?startDate=2014-02-01&zip=98121&api_key=7f4sgppp533ecxvutkaqg243";
     //    NSURL *tmsURL = [NSURL URLWithString:tmsString];
     //    NSData *tmsData = [NSData dataWithContentsOfURL:tmsURL];
     //
@@ -113,6 +118,19 @@
     [cell setFilm:_rottenTomatoesArray[indexPath.row]];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Row selected");
+    [myArray addObject:self.rottenTomatoesArray[indexPath.row]];
+    NSLog(@"%@", [self.rottenTomatoesArray[indexPath.row] title]);
+    [self.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:nil userInfo:nil];
+     //[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadedImage" object:nil userInfo:@{@"user": self}];
+    //[self.rottenTomatoesArray ]
+    //
 }
 
 @end

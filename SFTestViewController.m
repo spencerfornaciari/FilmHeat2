@@ -22,6 +22,7 @@
 
 @implementation SFTestViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,15 +35,27 @@
     [self.theaterController populateFilmData];
     _strongArray = self.theaterController.rottenTomatoesArray;
     
-    UITapGestureRecognizer* tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
-    [tapBackground setNumberOfTapsRequired:1];
-    [self.view addGestureRecognizer:tapBackground];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadTable:)
+                                                 name:@"reload"
+                                               object:nil];
+    
+    
+//    UITapGestureRecognizer* tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+//    [tapBackground setNumberOfTapsRequired:1];
+//    [self.view addGestureRecognizer:tapBackground];
     
 	// Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.theaterTableView reloadData];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
+    
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
         self.segmentOutlet.tintColor = [UIColor redColor];
         NSLog(@"One");
@@ -170,6 +183,13 @@
 -(void) dismissKeyboard:(id)sender
 {
     [self.view endEditing:YES];
+}
+
+- (void)reloadTable:(NSNotification *)note
+{
+    //id sender = [[note userInfo] objectForKey:@"reload"];
+    
+    [self.theaterTableView reloadData];
 }
 
 @end
