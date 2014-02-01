@@ -14,6 +14,8 @@
 @property (strong, nonatomic) SFFilmModelDataController *theaterController;
 @property (weak, nonatomic) IBOutlet UISearchBar *theaterSearchBar;
 
+@property (strong, nonatomic) NSMutableArray *strongArray;
+
 - (IBAction)buttonAction:(id)sender;
 
 @end
@@ -30,6 +32,7 @@
     self.theaterTableView.delegate = self.theaterController;
     self.theaterTableView.dataSource = self.theaterController;
     [self.theaterController populateFilmData];
+    _strongArray = self.theaterController.rottenTomatoesArray;
     
 	// Do any additional setup after loading the view.
 }
@@ -56,7 +59,7 @@
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
         self.segmentOutlet.tintColor = [UIColor redColor];
         NSLog(@"One");
-        
+        self.theaterController.rottenTomatoesArray = _strongArray;
         NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"criticsRating" ascending:NO];
         self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
         
@@ -66,7 +69,8 @@
         self.segmentOutlet.tintColor = [UIColor blueColor];
         
         NSLog(@"Two");
-        
+        self.theaterController.rottenTomatoesArray = _strongArray;
+
         NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"audienceRating" ascending:NO];
         self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
         
@@ -76,7 +80,8 @@
     {
         self.segmentOutlet.tintColor = [UIColor orangeColor];
         NSLog(@"Three");
-        
+        self.theaterController.rottenTomatoesArray = _strongArray;
+
         NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:YES];
         self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
         
@@ -117,26 +122,12 @@
     }
 }
 
-//Uses text when
--(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    //NSMutableArray *array = [NSMutableArray new];
-//    NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:searchBar.text ascending:NO];
-//    
-//    self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
-//    
-//    [self.theaterTableView reloadData];
-    NSLog(@"%@", searchBar.text);
-}
-
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
-    NSLog(@"%@", searchBar.text);
-}
+#pragma mark - Dynamically search text as user enters it
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSLog(@"%@", searchBar.text);
+   // NSLog(@"%@", searchBar.text);
+    searchBar.text = @"";
     [searchBar resignFirstResponder];
 
 }
@@ -145,11 +136,27 @@
 //Updates as user enters text
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    NSMutableArray *originalArray = [NSMutableArray new];
+    self.theaterController.rottenTomatoesArray = _strongArray;
+    
     NSLog(@"%@", searchText);
-//    NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:searchText ascending:NO];
-//    //
-//        self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
-
+    
+    for (FilmModel *model in self.theaterController.rottenTomatoesArray)
+    {
+        NSString *string = [model.title uppercaseString];
+        if ([string hasPrefix:[searchText uppercaseString]])
+        {
+            [originalArray addObject:model];
+        }
+    }
+    
+    if ([searchText isEqualToString:@""]) {
+        self.theaterController.rottenTomatoesArray = _strongArray;
+    } else {
+        self.theaterController.rottenTomatoesArray = originalArray;
+    }
+    
+    [self.theaterTableView reloadData];
 }
 
 @end
