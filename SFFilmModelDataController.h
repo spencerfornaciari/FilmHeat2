@@ -12,8 +12,10 @@
 
 @interface SFFilmModelDataController : NSObject <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic) NSMutableArray *rottenTomatoesArray, *sortedRottenTomatoesArray, *seenItArray;
+@property (nonatomic) NSMutableArray *sortedRottenTomatoesArray, *seenItArray;
+@property (nonatomic) NSArray *rottenTomatoesArray;
 @property (nonatomic) NSArray *sortedArray;
+@property (nonatomic, strong) NSOperationQueue *downloadQueue;
 
 - (void)populateFilmData;
 

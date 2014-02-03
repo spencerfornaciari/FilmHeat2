@@ -8,30 +8,32 @@
 
 #import "SFFilmModelDataController.h"
 
-#define ROTTEN_TOMATOES_API @"sxqdwkta4vvwcggqmm5ggja7"
+#define ROTTEN_TOMATOES_API_KEY @"sxqdwkta4vvwcggqmm5ggja7"
+#define TMS_API_KEY @"7f4sgppp533ecxvutkaqg243"
 
 @implementation SFFilmModelDataController
-{
-    NSMutableArray *myArray;
-}
 
 - (void)populateFilmData
 {
     _seenItArray = [[NSMutableArray alloc] init];
+    _downloadQueue = [NSOperationQueue new];
 
-    NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", ROTTEN_TOMATOES_API];
-    
-    NSURL *rottenURL = [[NSURL alloc] initWithString:rottenString];
-    
-    NSData *rottenData = [NSData dataWithContentsOfURL:rottenURL];
+   // NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", ROTTEN_TOMATOES_API_KEY];
     
     
-    NSError* error;
-    NSDictionary *rottenDictionary = [NSJSONSerialization JSONObjectWithData:rottenData
-                                                                     options:kNilOptions
-                                                                       error:&error];
+    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=2014-02-03&zip=98121&imageSize=Sm&imageText=false&api_key=%@", TMS_API_KEY];
     
-    NSArray *rottenArray = [rottenDictionary objectForKey:@"movies"];
+    NSURL *tmsURL = [NSURL URLWithString:tmsString];
+    
+    NSData *tmsData = [NSData dataWithContentsOfURL:tmsURL];
+    
+    NSError *error;
+    
+    //NSDictionary *tmsDictionary = [NSJSONSerialization JSONObjectWithData:tmsData options:NSJSONReadingMutableContainers error:&error];
+    
+    NSArray *tmsArray = [NSJSONSerialization JSONObjectWithData:tmsData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&error];
     
     
     ///Find theaters: http://data.tmsapi.com/v1/theatres?zip=98121&api_key=7f4sgppp533ecxvutkaqg243
@@ -60,46 +62,111 @@
     
     [formatter setDateFormat:@"hh:mm yyyy-MM-dd"];
     
-    _rottenTomatoesArray = [[NSMutableArray alloc] initWithCapacity:rottenArray.count];
+    NSMutableArray *rottenInstance = [[NSMutableArray alloc] init];
     
-    for (NSDictionary *dictionary in rottenArray)
+    for (NSDictionary *dictionary in tmsArray)
     {
-        //Create a film object
         FilmModel *film = [FilmModel new];
         
-        //Set the film title
-        film.title = [dictionary objectForKey:@"title"];
+        film.downloadQueue = self.downloadQueue;
+        //film.isDownloading = NO;
         
-        //Set the critics rating of the film according to Rotten Tomatoes
-        film.criticsRating = [[dictionary valueForKeyPath:@"ratings.critics_score"] integerValue];
+        film.title = dictionary[@"title"];
+        //NSLog(@"%@", film.title);
         
-        //Set the audience rating of the film according to Rotten Tomatoes
-        film.audienceRating = [[dictionary valueForKeyPath:@"ratings.audience_score"] integerValue];
-        
-        //Calculating the difference between critic and audience rating
-        film.ratingVariance = abs(film.criticsRating - film.audienceRating);
-        
-        //Grab the URL for the thumbnail of the film's poster
-        film.thumbnailPoster = [dictionary valueForKeyPath:@"posters.thumbnail"];
-        
-        //Set the film runtime
-        film.runtime = [dictionary valueForKeyPath:@"runtime"];
+        film.synopsis = dictionary[@"shortDescription"];
         
         //Set the film's MPAA rating
-        film.mpaaRating = [dictionary valueForKeyPath:@"mpaa_rating"];
+        film.mpaaRating = [dictionary valueForKeyPath:@"ratings.code"];
         
-        //Set the film's synopsis
-        film.synopsis = [dictionary valueForKeyPath:@"synopsis"];
+        //Grab the URL for the thumbnail of the film's poster
+        NSString *poster = [dictionary valueForKeyPath:@"preferredImage.uri"];
+        film.thumbnailPoster = [NSString stringWithFormat:@"http://developer.tmsimg.com/%@?api_key=%@", poster, TMS_API_KEY];
+        //NSLog(@"%@", film.thumbnailPoster);
         
-        //Set the path to the film's IMDb page
-        film.imdb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
+        film.showtimes = [dictionary valueForKey:@"showtimes"];
+        //NSLog(@"%@", film.showtimes);
+
+//        NSString *string = film.title;
+//        string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        
+//        string = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@&page_limit=1", ROTTEN_TOMATOES_API_KEY, string];
+//        
+//        NSURL *rottenURL = [NSURL URLWithString:string];
+//        
+//        NSData *rottenData = [NSData dataWithContentsOfURL:rottenURL];
+
         
-        [_rottenTomatoesArray addObject:film];
+//        if (rottenData) {
+//            NSLog(@"TRUE");
+//           
+//            NSError* error;
+//            NSDictionary *rottenDictionary = [NSJSONSerialization JSONObjectWithData:rottenData
+//                                                                             options:NSJSONReadingMutableContainers
+//                                                                           error:&error];
+//            NSArray *rottenArray = [rottenDictionary objectForKey:@"movies"];
+//
+//            //Set the critics rating of the film according to Rotten Tomatoes
+//            film.criticsRating = [[rottenArray[0] valueForKeyPath:@"ratings.critics_score"] integerValue];
+//            
+//            //Set the audience rating of the film according to Rotten Tomatoes
+//            film.audienceRating = [[rottenArray[0] valueForKeyPath:@"ratings.audience_score"] integerValue];
+//            
+//            //Calculating the difference between critic and audience rating
+//            film.ratingVariance = abs(film.criticsRating - film.audienceRating);
+//            
+//
+//            //Set the film runtime
+//            film.runtime = [rottenArray[0] valueForKeyPath:@"runtime"];
+//
+//            //Set the path to the film's IMDb page
+//            film.imdb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[rottenArray[0] valueForKeyPath:@"alternate_ids.imdb"]];
+//        }
+        
+        [rottenInstance addObject:film];
+       
     }
     
+    
+    _rottenTomatoesArray = [NSArray arrayWithArray:rottenInstance];
+//    for (NSDictionary *dictionary in rottenArray)
+//    {
+//        //Create a film object
+//        FilmModel *film = [FilmModel new];
+//        
+//        //Set the film title
+//        film.title = [dictionary objectForKey:@"title"];
+//        
+//        //Set the critics rating of the film according to Rotten Tomatoes
+//        film.criticsRating = [[dictionary valueForKeyPath:@"ratings.critics_score"] integerValue];
+//        
+//        //Set the audience rating of the film according to Rotten Tomatoes
+//        film.audienceRating = [[dictionary valueForKeyPath:@"ratings.audience_score"] integerValue];
+//        
+//        //Calculating the difference between critic and audience rating
+//        film.ratingVariance = abs(film.criticsRating - film.audienceRating);
+//        
+//        //Grab the URL for the thumbnail of the film's poster
+//        film.thumbnailPoster = [dictionary valueForKeyPath:@"posters.thumbnail"];
+//        
+//        //Set the film runtime
+//        film.runtime = [dictionary valueForKeyPath:@"runtime"];
+//        
+//        //Set the film's MPAA rating
+//        film.mpaaRating = [dictionary valueForKeyPath:@"mpaa_rating"];
+//        
+//        //Set the film's synopsis
+//        film.synopsis = [dictionary valueForKeyPath:@"synopsis"];
+//        
+//        //Set the path to the film's IMDb page
+//        film.imdb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
+//        
+//        [_rottenTomatoesArray addObject:film];
+//    }
+    
     //Sort the film objects by the critics rating
-    NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"criticsRating" ascending:NO];
-    _rottenTomatoesArray = [NSMutableArray arrayWithArray:[_rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
+//    NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"criticsRating" ascending:NO];
+//    _rottenTomatoesArray = [NSMutableArray arrayWithArray:[_rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
 
 }
 
@@ -107,14 +174,14 @@
 {
     // Return the number of rows in the section.
     return _rottenTomatoesArray.count;
-    NSLog(@"%lu", (unsigned long)_rottenTomatoesArray.count);
+    //NSLog(@"%lu", (unsigned long)_rottenTomatoesArray.count);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SFFilmTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Configure the cell...    
     [cell setFilm:_rottenTomatoesArray[indexPath.row]];
     
     return cell;
@@ -123,11 +190,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Row selected");
-    [myArray addObject:self.rottenTomatoesArray[indexPath.row]];
-    NSLog(@"%@", [self.rottenTomatoesArray[indexPath.row] title]);
-    [self.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
+  //  [myArray addObject:self.rottenTomatoesArray[indexPath.row]];
+  //  NSLog(@"%@", [self.rottenTomatoesArray[indexPath.row] title]);
+  //  [self.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:nil userInfo:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:nil userInfo:nil];
      //[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadedImage" object:nil userInfo:@{@"user": self}];
     //[self.rottenTomatoesArray ]
     //

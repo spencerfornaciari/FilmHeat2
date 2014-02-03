@@ -170,7 +170,7 @@
     NSLog(@"Row selected");
     [myArray addObject:self.theaterFilmsController.rottenTomatoesArray[indexPath.row]];
     NSLog(@"%@", [self.theaterFilmsController.rottenTomatoesArray[indexPath.row] title]);
-    [self.theaterFilmsController.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
+    //[self.theaterFilmsController.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
     
     [self.tableView reloadData];
 }

@@ -20,29 +20,20 @@
 //    UINavigationController *navigationController = tbc.viewControllers[1];
 //    SFMasterViewController *controller = (SFMasterViewController *)navigationController.topViewController;
 //    controller.managedObjectContext = self.managedObjectContext;
-    NSManagedObjectContext *context = [self managedObjectContext];
-//    NSManagedObject *failedBankInfo = [NSEntityDescription
-//                                       insertNewObjectForEntityForName:@"History"
-//                                       inManagedObjectContext:context];
-//    [failedBankInfo setValue:@"Test Bank2" forKey:@"title"];
-//    [failedBankInfo setValue:@"Testville2" forKey:@"synopsis"];
-//    [failedBankInfo setValue:@"Testland2" forKey:@"mpaa"];
+//    NSManagedObjectContext *context = [self managedObjectContext];
 //
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-//
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"History" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Name: %@", [info valueForKey:@"title"]);
-        //NSManagedObject *details = [info valueForKey:@"details"];
-        //NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
-    }
+//    NSError *error;
+//    if (![context save:&error]) {
+//        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//    }
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription
+//                                   entityForName:@"History" inManagedObjectContext:context];
+//    [fetchRequest setEntity:entity];
+//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//    for (NSManagedObject *info in fetchedObjects) {
+//        NSLog(@"Name: %@", [info valueForKey:@"title"]);
+//    }
     
     //UINavigationController *navigationController = tbc.viewControllers[3];
     //MasterViewController *controller = (MasterViewController *)navigationController.topViewController;

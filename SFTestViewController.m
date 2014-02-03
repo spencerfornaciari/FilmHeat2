@@ -14,6 +14,7 @@
 @property (strong, nonatomic) SFFilmModelDataController *theaterController;
 @property (weak, nonatomic) IBOutlet UISearchBar *theaterSearchBar;
 
+
 @property (strong, nonatomic) NSMutableArray *strongArray;
 
 - (IBAction)buttonAction:(id)sender;
@@ -33,7 +34,7 @@
     self.theaterTableView.delegate = self.theaterController;
     self.theaterTableView.dataSource = self.theaterController;
     [self.theaterController populateFilmData];
-    _strongArray = self.theaterController.rottenTomatoesArray;
+    _strongArray = [NSMutableArray arrayWithArray: self.theaterController.rottenTomatoesArray];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadTable:)
@@ -48,27 +49,16 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.theaterTableView reloadData];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
         self.segmentOutlet.tintColor = [UIColor redColor];
-        NSLog(@"One");
     } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
         self.segmentOutlet.tintColor = [UIColor blueColor];
-        
-        NSLog(@"Two");
-
     } else if(self.segmentOutlet.selectedSegmentIndex == 2)
     {
         self.segmentOutlet.tintColor = [UIColor greenColor];
-        NSLog(@"Three");
-
     }
     
 }
@@ -77,21 +67,18 @@
         
         [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor redColor];
-        NSLog(@"One");
         self.theaterController.rottenTomatoesArray = _strongArray;
-        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"criticsRating" ascending:NO];
+        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
         self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
         
-        [self.theaterTableView reloadData];
+       // [self.theaterTableView reloadData];
         
     } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
         [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor blueColor];
-        
-        NSLog(@"Two");
         self.theaterController.rottenTomatoesArray = _strongArray;
 
-        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"audienceRating" ascending:NO];
+        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO];
         self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
         
         [self.theaterTableView reloadData];
@@ -100,13 +87,12 @@
     {
         [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor orangeColor];
-        NSLog(@"Three");
         self.theaterController.rottenTomatoesArray = _strongArray;
 
         NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:YES];
         self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
         
-        [self.theaterTableView reloadData];
+       // [self.theaterTableView reloadData];
         
     }
 }
@@ -171,7 +157,7 @@
         }
     }
     
-    if ([searchText isEqualToString:@""]) {
+    if (searchText.length == 0) {
         self.theaterController.rottenTomatoesArray = _strongArray;
     } else {
         self.theaterController.rottenTomatoesArray = originalArray;
@@ -187,9 +173,13 @@
 
 - (void)reloadTable:(NSNotification *)note
 {
-    //id sender = [[note userInfo] objectForKey:@"reload"];
+    FilmModel *model = [note.userInfo objectForKey:@"film"];
+    NSInteger modelRow = [self.theaterController.rottenTomatoesArray indexOfObject:model];
+    NSLog(@"%d", modelRow);
+    NSLog(@"%@", note.userInfo);
+    NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
     
-    [self.theaterTableView reloadData];
+    [self.theaterTableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end

@@ -33,21 +33,21 @@
     self.filmTitle.text = film.title;
     //self.filmTitle.textColor = [UIColor whiteColor];
     
-    self.filmCriticRating.text = [[NSNumber numberWithInt:film.criticsRating] stringValue];
-    //self.filmCriticRating.textColor = [UIColor whiteColor];
+//    self.filmCriticRating.text = [[NSNumber numberWithInt:film.criticsRating] stringValue];
+//    //self.filmCriticRating.textColor = [UIColor whiteColor];
+//    
+//    self.filmAudienceRating.text = [[NSNumber numberWithInt:film.audienceRating] stringValue];
+//    //self.filmAudienceRating.textColor = [UIColor whiteColor];
+//    
+//    self.ratingVariance.text = [[NSNumber numberWithInt:film.ratingVariance] stringValue];
+//    //self.ratingVariance.textColor = [UIColor whiteColor];
     
-    self.filmAudienceRating.text = [[NSNumber numberWithInt:film.audienceRating] stringValue];
-    //self.filmAudienceRating.textColor = [UIColor whiteColor];
-    
-    self.ratingVariance.text = [[NSNumber numberWithInt:film.ratingVariance] stringValue];
-    //self.ratingVariance.textColor = [UIColor whiteColor];
-    
-    NSURL *url = [NSURL URLWithString:film.thumbnailPoster];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *image = [UIImage imageWithData:data];
-    
-    //self.backgroundColor = [UIColor grayColor];
-    self.filmThumbnailPoster.image = image;
+    if (!film.posterImage) {
+        self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
+        [film downloadPoster];
+    } else {
+        self.filmThumbnailPoster.image = film.posterImage;
+    }
 }
 
 @end

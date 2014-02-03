@@ -10,4 +10,29 @@
 
 @implementation FilmModel
 
+-(id)init
+{
+    self = [super init];
+    _isDownloading = FALSE;
+    
+    return self;
+}
+
+-(void)downloadPoster
+{
+    _isDownloading = TRUE;
+    
+    [_downloadQueue addOperationWithBlock:^{
+        NSURL *posterURL = [NSURL URLWithString:self.thumbnailPoster];
+        NSData *posterData = [NSData dataWithContentsOfURL:posterURL];
+        self.posterImage = [UIImage imageWithData:posterData];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            //_isDownloading = FALSE;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:nil userInfo:@{@"film": self}];
+        }];
+    }];
+    
+}
+
 @end
