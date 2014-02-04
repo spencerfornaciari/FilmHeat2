@@ -22,7 +22,7 @@
    // NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", ROTTEN_TOMATOES_API_KEY];
     
     
-    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=2014-02-03&zip=%@&imageSize=Sm&imageText=false&api_key=%@", zipCode, TMS_API_KEY];
+    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=2014-02-04&zip=%@&imageSize=Sm&imageText=false&api_key=%@", zipCode, TMS_API_KEY];
     
     NSURL *tmsURL = [NSURL URLWithString:tmsString];
     
@@ -73,7 +73,7 @@
         //film.isDownloading = NO;
         
         film.title = dictionary[@"title"];
-        //NSLog(@"%@", film.title);
+        NSLog(@"%@", film.title);
         
         film.synopsis = dictionary[@"shortDescription"];
         
@@ -89,51 +89,15 @@
         film.genres = [dictionary valueForKey:@"genres"];
         
         film.runtime = [film runTimeConverter:[dictionary valueForKey:@"runTime"]];
-        
-        
+//
         film.releaseDate = [film releaseDateConverter:[dictionary valueForKey:@"releaseDate"]];
     
-        NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
-        [dateFormatter2 setDateStyle:NSDateFormatterShortStyle];
-        //NSLog(@"%@", [dateFormatter2 stringFromDate:film.releaseDate]);
+//        NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+//        [dateFormatter2 setDateStyle:NSDateFormatterShortStyle];
+//        NSLog(@"%@", [dateFormatter2 stringFromDate:film.releaseDate]);
         
-        //NSLog(@"%@", film.showtimes);
-
-//        NSString *string = film.title;
-//        string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        
-//        string = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@&page_limit=1", ROTTEN_TOMATOES_API_KEY, string];
-//        
-//        NSURL *rottenURL = [NSURL URLWithString:string];
-//        
-//        NSData *rottenData = [NSData dataWithContentsOfURL:rottenURL];
-
-        
-//        if (rottenData) {
-//            NSLog(@"TRUE");
-//           
-//            NSError* error;
-//            NSDictionary *rottenDictionary = [NSJSONSerialization JSONObjectWithData:rottenData
-//                                                                             options:NSJSONReadingMutableContainers
-//                                                                           error:&error];
-//            NSArray *rottenArray = [rottenDictionary objectForKey:@"movies"];
-//
-//            //Set the critics rating of the film according to Rotten Tomatoes
-//            film.criticsRating = [[rottenArray[0] valueForKeyPath:@"ratings.critics_score"] integerValue];
-//            
-//            //Set the audience rating of the film according to Rotten Tomatoes
-//            film.audienceRating = [[rottenArray[0] valueForKeyPath:@"ratings.audience_score"] integerValue];
-//            
-//            //Calculating the difference between critic and audience rating
-//            film.ratingVariance = abs(film.criticsRating - film.audienceRating);
-//            
-//
-//            //Set the film runtime
-//            film.runtime = [rottenArray[0] valueForKeyPath:@"runtime"];
-//
-//            //Set the path to the film's IMDb page
-//            film.imdb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[rottenArray[0] valueForKeyPath:@"alternate_ids.imdb"]];
-//        }
+       // NSString *string2 = [dictionary valueForKeyPath:@"showtimes.theatre.name"];
+       // NSLog(@"%@", string2);
         
         [rottenInstance addObject:film];
        

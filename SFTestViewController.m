@@ -34,7 +34,7 @@
     
     self.theaterTableView.delegate = self.theaterController;
     self.theaterTableView.dataSource = self.theaterController;
-    [self.theaterController populateFilmData:@"85629"];
+    [self.theaterController populateFilmData:@"98121"];
     _strongArray = [NSMutableArray arrayWithArray: self.theaterController.rottenTomatoesArray];
     
     [[NSNotificationCenter defaultCenter] addObserver:self

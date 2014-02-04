@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ShowtimeModel.h"
 
 @interface FilmModel : NSObject
 
@@ -23,13 +24,14 @@
 @property (strong, nonatomic) NSNumber *releaseYear;
 @property (strong, nonatomic) NSDate *releaseDate;
 @property (nonatomic) NSArray *genres;
+@property (nonatomic) NSArray *showtimes;
 
 @property (nonatomic) BOOL isDownloading;
-@property (strong, nonatomic) NSArray *showtimes;
 @property (nonatomic, weak) NSOperationQueue *downloadQueue;
 
 -(void)downloadPoster;
 -(NSDate *)releaseDateConverter:(NSString *)releaseDateString;
 -(NSNumber *)runTimeConverter:(NSString *)runTimeString;
+-(NSArray *)setShowTimes:(NSArray *)tmsShowtimeArray;
 
 @end

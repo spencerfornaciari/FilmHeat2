@@ -53,17 +53,16 @@
 -(NSNumber *)runTimeConverter:(NSString *)runTimeString
 {
     NSArray *runTimeRawCharacters = [runTimeString componentsSeparatedByCharactersInSet:
-                        [NSCharacterSet characterSetWithCharactersInString:@"0HM"]];
+                        [NSCharacterSet characterSetWithCharactersInString:@"THM"]];
     NSMutableArray *runTimeParsedCharacters = [NSMutableArray arrayWithArray:runTimeRawCharacters];
-    [runTimeParsedCharacters removeObjectAtIndex:0];
     [runTimeParsedCharacters removeLastObject];
-    
+
     int filmRuntime = 0;
-    
-    for (int i = 0; i < runTimeParsedCharacters.count; i++)
+
+    for (int i = 1; i < runTimeParsedCharacters.count; i++)
     {
         if (![runTimeParsedCharacters[i] isEqualToString:@""]) {
-            if (i == 0) {
+            if (i == 1) {
                 filmRuntime = [runTimeParsedCharacters[i] integerValue] * 60;
             } else {
                 filmRuntime = filmRuntime + [runTimeParsedCharacters[i] integerValue];
@@ -73,5 +72,20 @@
 
     return [NSNumber numberWithInteger:filmRuntime];
 }
+
+//-(NSArray *)setShowTimes:(NSArray *)tmsShowtimeArray;
+//{
+//    NSMutableArray *showtimesMutable = [NSMutableArray new];
+//    
+//    for (NSDictionary *dictionary in tmsShowtimeArray)
+//    {
+//        ShowtimeModel *model = [ShowtimeModel new];
+//        model.theaterName = [dictionary valueForKeyPath:@"showtimes.theatre.name"];
+//        model.screeningDate = [dictionary valueForKeyPath:@"showtimes.theatre.dateTime"];
+//        
+//    }
+//    
+//    return nil;
+//}
 
 @end
