@@ -10,6 +10,9 @@
 
 @interface SFMovieDetailViewController ()
 
+- (IBAction)dismissViewController:(id)sender;
+
+
 
 @end
 
@@ -37,6 +40,11 @@
 }
 
 - (IBAction)ratingsSliderInput:(id)sender {
-    NSLog(@"%ld", (long)[sender integerValue]);
+    int threshold = [self.ratingSlider value] * 100;
+    self.myRating.text = [[NSNumber numberWithInt:threshold] stringValue];
+}
+- (IBAction)dismissViewController:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
