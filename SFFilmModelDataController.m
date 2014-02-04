@@ -21,8 +21,11 @@
 
    // NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", ROTTEN_TOMATOES_API_KEY];
     
+    NSDateFormatter *apiDateFormatter = [NSDateFormatter new];
+    [apiDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *apiDateString = [apiDateFormatter stringFromDate:[NSDate date]];
     
-    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=2014-02-04&zip=%@&imageSize=Sm&imageText=false&api_key=%@", zipCode, TMS_API_KEY];
+    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=%@&zip=%@&imageSize=Sm&imageText=false&api_key=%@", apiDateString, zipCode, TMS_API_KEY];
     
     NSURL *tmsURL = [NSURL URLWithString:tmsString];
     
@@ -73,7 +76,6 @@
         //film.isDownloading = NO;
         
         film.title = dictionary[@"title"];
-        NSLog(@"%@", film.title);
         
         film.synopsis = dictionary[@"shortDescription"];
         
