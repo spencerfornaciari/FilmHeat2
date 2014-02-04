@@ -33,7 +33,7 @@
     
     self.theaterTableView.delegate = self.theaterController;
     self.theaterTableView.dataSource = self.theaterController;
-    [self.theaterController populateFilmData];
+    [self.theaterController populateFilmData:@"85629"];
     _strongArray = [NSMutableArray arrayWithArray: self.theaterController.rottenTomatoesArray];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -41,7 +41,15 @@
                                                  name:@"reload"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(detailedView:)
+                                                 name:@"detail"
+                                               object:nil];
     
+    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
+    //There is a direction property on UISwipeGestureRecognizer. You can set that to both right and left swipes
+    recognizer.direction  =  UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
+    [self.theaterTableView addGestureRecognizer:recognizer];
 //    UITapGestureRecognizer* tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
 //    [tapBackground setNumberOfTapsRequired:1];
 //    [self.view addGestureRecognizer:tapBackground];
@@ -71,7 +79,7 @@
         NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
         self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
         
-       // [self.theaterTableView reloadData];
+       [self.theaterTableView reloadData];
         
     } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
         [self.view endEditing:YES];
@@ -143,7 +151,7 @@
 //Updates as user enters text
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSMutableArray *originalArray = [NSMutableArray new];
+    NSMutableArray *searchArray = [NSMutableArray new];
     self.theaterController.rottenTomatoesArray = _strongArray;
     
     NSLog(@"%@", searchText);
@@ -153,14 +161,14 @@
         NSString *string = [model.title uppercaseString];
         if ([string hasPrefix:[searchText uppercaseString]])
         {
-            [originalArray addObject:model];
+            [searchArray addObject:model];
         }
     }
     
     if (searchText.length == 0) {
         self.theaterController.rottenTomatoesArray = _strongArray;
     } else {
-        self.theaterController.rottenTomatoesArray = originalArray;
+        self.theaterController.rottenTomatoesArray = searchArray;
     }
     
     [self.theaterTableView reloadData];
@@ -175,11 +183,27 @@
 {
     FilmModel *model = [note.userInfo objectForKey:@"film"];
     NSInteger modelRow = [self.theaterController.rottenTomatoesArray indexOfObject:model];
-    NSLog(@"%d", modelRow);
-    NSLog(@"%@", note.userInfo);
     NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
     
     [self.theaterTableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)detailedView:(NSNotification *)note
+{
+    FilmModel *model = [note.userInfo objectForKey:@"user"];
+    
+    //NSInteger modelRow = [self.theaterController.rottenTomatoesArray indexOfObject:model];
+    
+    NSLog(@"%@", [note userInfo] );
+   // NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
+    
+  //  SFMovieDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"detailMovie"];
+  //  controller.movieTitle.text = @"hello";//[self.theaterController.rottenTomatoesArray[modelRow] title];
+}
+
+- (void)handleSwipeFrom
+{
+    NSLog(@"SWIPE");
 }
 
 @end

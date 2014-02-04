@@ -34,7 +34,7 @@
     
     self.tableView.dataSource = self.theaterFilmsController;
     
-    [self.theaterFilmsController populateFilmData];
+    //[self.theaterFilmsController populateFilmData];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

@@ -14,6 +14,9 @@
 {
     self = [super init];
     _isDownloading = FALSE;
+    _criticsRating = 10;
+    _audienceRating = 90;
+    _ratingVariance = 80;
     
     return self;
 }

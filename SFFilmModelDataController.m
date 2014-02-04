@@ -7,13 +7,14 @@
 //
 
 #import "SFFilmModelDataController.h"
+#import "SFMovieDetailViewController.h"
 
 #define ROTTEN_TOMATOES_API_KEY @"sxqdwkta4vvwcggqmm5ggja7"
 #define TMS_API_KEY @"7f4sgppp533ecxvutkaqg243"
 
 @implementation SFFilmModelDataController
 
-- (void)populateFilmData
+- (void)populateFilmData:(NSString *)zipCode
 {
     _seenItArray = [[NSMutableArray alloc] init];
     _downloadQueue = [NSOperationQueue new];
@@ -21,7 +22,7 @@
    // NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", ROTTEN_TOMATOES_API_KEY];
     
     
-    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=2014-02-03&zip=98121&imageSize=Sm&imageText=false&api_key=%@", TMS_API_KEY];
+    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=2014-02-03&zip=%@&imageSize=Sm&imageText=false&api_key=%@", zipCode, TMS_API_KEY];
     
     NSURL *tmsURL = [NSURL URLWithString:tmsString];
     
@@ -85,6 +86,8 @@
         //NSLog(@"%@", film.thumbnailPoster);
         
         film.showtimes = [dictionary valueForKey:@"showtimes"];
+        film.genres = [dictionary valueForKey:@"genres"];
+        NSLog(@"%@", film.genres);
         //NSLog(@"%@", film.showtimes);
 
 //        NSString *string = film.title;
@@ -190,6 +193,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Row selected");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"detail" object:nil userInfo:@{@"user": indexPath}];
+    
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        NSDictionary *repoDict = _searchResults[indexPath.row];
+//        self.detailViewController.detailItem = repoDict;
+//    }
+    
   //  [myArray addObject:self.rottenTomatoesArray[indexPath.row]];
   //  NSLog(@"%@", [self.rottenTomatoesArray[indexPath.row] title]);
   //  [self.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
@@ -198,6 +208,17 @@
      //[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadedImage" object:nil userInfo:@{@"user": self}];
     //[self.rottenTomatoesArray ]
     //
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Detemine if it's in editing mode
+//    if (self.editing)
+//    {
+//        return UITableViewCellEditingStyleDelete;
+//    }
+    
+    return UITableViewCellEditingStyleNone;
 }
 
 @end

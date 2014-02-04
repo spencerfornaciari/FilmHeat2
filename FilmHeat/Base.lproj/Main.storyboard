@@ -71,6 +71,24 @@
             </objects>
             <point key="canvasLocation" x="61" y="800"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="3ML-Mh-jIo">
+            <objects>
+                <viewController id="WIu-Jo-ovA" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kMH-vF-fRz"/>
+                        <viewControllerLayoutGuide type="bottom" id="IjC-ZC-n8Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bTd-Qi-l8R">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07S-aI-kK8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="320" y="-578"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="moP-c9-PH7">
             <objects>
@@ -135,11 +153,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="83" id="yb5-GO-EH1" customClass="SFFilmTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="83" id="yb5-GO-EH1" customClass="SFFilmTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yb5-GO-EH1" id="S8x-7T-m2t">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="niO-OR-MYf">
@@ -201,6 +219,7 @@
                                             <outlet property="filmThumbnailPoster" destination="xJH-8b-iKn" id="s7T-LL-Sjf"/>
                                             <outlet property="filmTitle" destination="niO-OR-MYf" id="XwZ-uA-HfW"/>
                                             <outlet property="ratingVariance" destination="VyL-wR-M60" id="dia-ri-wTa"/>
+                                            <segue destination="7qj-cp-Piw" kind="modal" id="Dvj-Lv-Rem"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -430,6 +449,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5QE-IB-E65" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1335" y="136"/>
+        </scene>
+        <!--Movie Detail View Controller-->
+        <scene sceneID="Fdz-Ic-v9c">
+            <objects>
+                <viewController storyboardIdentifier="detailMovie" id="7qj-cp-Piw" customClass="SFMovieDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1aH-3i-NzQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="NWV-nP-xC7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UL8-f9-Vsz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9eU-S6-bzQ">
+                                <rect key="frame" x="40" y="54" width="110" height="168"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Lo-8R-L9S">
+                                <rect key="frame" x="40" y="230" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGK-C2-exr">
+                                <rect key="frame" x="138" y="127" width="142" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="4eb-4I-JR9">
+                                <rect key="frame" x="38" y="403" width="244" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="ratingsSliderInput:" destination="7qj-cp-Piw" eventType="valueChanged" id="8A0-Lu-AFz"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Rating:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1S-Vj-ae4">
+                                <rect key="frame" x="76" y="374" width="83" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfj-Hk-uPg">
+                                <rect key="frame" x="167" y="374" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HOU-Y0-qZG"/>
+                    <connections>
+                        <outlet property="moviePoster" destination="9eU-S6-bzQ" id="VAS-tQ-Q3n"/>
+                        <outlet property="movieSynopsis" destination="5Lo-8R-L9S" id="1gp-O0-qHp"/>
+                        <outlet property="movieTitle" destination="IGK-C2-exr" id="J6V-zD-2rr"/>
+                        <outlet property="myRating" destination="tfj-Hk-uPg" id="04J-T6-s8u"/>
+                        <outlet property="ratingSlider" destination="4eb-4I-JR9" id="6ZI-8r-Zfv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sy9-2v-M7h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1946" y="-599"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NmL-fs-zQ6">

@@ -33,13 +33,13 @@
     self.filmTitle.text = film.title;
     //self.filmTitle.textColor = [UIColor whiteColor];
     
-//    self.filmCriticRating.text = [[NSNumber numberWithInt:film.criticsRating] stringValue];
-//    //self.filmCriticRating.textColor = [UIColor whiteColor];
-//    
-//    self.filmAudienceRating.text = [[NSNumber numberWithInt:film.audienceRating] stringValue];
-//    //self.filmAudienceRating.textColor = [UIColor whiteColor];
-//    
-//    self.ratingVariance.text = [[NSNumber numberWithInt:film.ratingVariance] stringValue];
+    self.filmCriticRating.text = [[NSNumber numberWithInt:film.criticsRating] stringValue];
+    //self.filmCriticRating.textColor = [UIColor whiteColor];
+    
+    self.filmAudienceRating.text = [[NSNumber numberWithInt:film.audienceRating] stringValue];
+    //self.filmAudienceRating.textColor = [UIColor whiteColor];
+//
+    self.ratingVariance.text = [[NSNumber numberWithInt:film.ratingVariance] stringValue];
 //    //self.ratingVariance.textColor = [UIColor whiteColor];
     
     if (!film.posterImage) {

@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSString *synopsis;
 @property (strong, nonatomic) NSString *mpaaRating;
 @property (strong, nonatomic) NSNumber *releaseYear;
+@property (nonatomic) NSArray *genres;
 
 @property (nonatomic) BOOL isDownloading;
 @property (strong, nonatomic) NSArray *showtimes;

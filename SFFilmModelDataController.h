@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FilmModel.h"
 #import "SFFilmTableViewCell.h"
+#import "SFMovieDetailViewController.h"
 
 @interface SFFilmModelDataController : NSObject <UITableViewDataSource, UITableViewDelegate>
 
@@ -16,7 +17,8 @@
 @property (nonatomic) NSArray *rottenTomatoesArray;
 @property (nonatomic) NSArray *sortedArray;
 @property (nonatomic, strong) NSOperationQueue *downloadQueue;
+@property (nonatomic) SFMovieDetailViewController *detailController;
 
-- (void)populateFilmData;
+- (void)populateFilmData:(NSString *)zipCode;
 
 @end
