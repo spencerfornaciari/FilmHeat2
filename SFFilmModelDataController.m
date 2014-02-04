@@ -12,11 +12,14 @@
 #define ROTTEN_TOMATOES_API_KEY @"sxqdwkta4vvwcggqmm5ggja7"
 #define TMS_API_KEY @"7f4sgppp533ecxvutkaqg243"
 
+@interface SFFilmModelDataController () <UIScrollViewDelegate>
+
+@end
+
 @implementation SFFilmModelDataController
 
 - (void)populateFilmData:(NSString *)zipCode
 {
-    _seenItArray = [[NSMutableArray alloc] init];
     _downloadQueue = [NSOperationQueue new];
 
    // NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", ROTTEN_TOMATOES_API_KEY];
@@ -90,61 +93,40 @@
 //        NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
 //        [dateFormatter2 setDateStyle:NSDateFormatterShortStyle];
 //        NSLog(@"%@", [dateFormatter2 stringFromDate:film.releaseDate]);
-        
-       // NSString *string2 = [dictionary valueForKeyPath:@"showtimes.theatre.name"];
-       // NSLog(@"%@", string2);
-        
+
         [rottenInstance addObject:film];
        
     }
     
+    for (int i=0; i<5; i++) {
+        FilmModel *film = rottenInstance[i];
+        film.wantsToSee = YES;
+    }
+
+    for (int i=0; i<10; i++) {
+        FilmModel *film = rottenInstance[i];
+        film.hasSeen = YES;
+    }
+
     
     _rottenTomatoesArray = [NSArray arrayWithArray:rottenInstance];
-//    for (NSDictionary *dictionary in rottenArray)
-//    {
-//        //Create a film object
-//        FilmModel *film = [FilmModel new];
-//        
-//        //Set the film title
-//        film.title = [dictionary objectForKey:@"title"];
-//        
-//        //Set the critics rating of the film according to Rotten Tomatoes
-//        film.criticsRating = [[dictionary valueForKeyPath:@"ratings.critics_score"] integerValue];
-//        
-//        //Set the audience rating of the film according to Rotten Tomatoes
-//        film.audienceRating = [[dictionary valueForKeyPath:@"ratings.audience_score"] integerValue];
-//        
-//        //Calculating the difference between critic and audience rating
-//        film.ratingVariance = abs(film.criticsRating - film.audienceRating);
-//        
-//        //Grab the URL for the thumbnail of the film's poster
-//        film.thumbnailPoster = [dictionary valueForKeyPath:@"posters.thumbnail"];
-//        
-//        //Set the film runtime
-//        film.runtime = [dictionary valueForKeyPath:@"runtime"];
-//        
-//        //Set the film's MPAA rating
-//        film.mpaaRating = [dictionary valueForKeyPath:@"mpaa_rating"];
-//        
-//        //Set the film's synopsis
-//        film.synopsis = [dictionary valueForKeyPath:@"synopsis"];
-//        
-//        //Set the path to the film's IMDb page
-//        film.imdb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
-//        
-//        [_rottenTomatoesArray addObject:film];
-//    }
-    
-    //Sort the film objects by the critics rating
-//    NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"criticsRating" ascending:NO];
-//    _rottenTomatoesArray = [NSMutableArray arrayWithArray:[_rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
 
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _rottenTomatoesArray.count;
+    switch (_selectedSegment) {
+        case 0: // Seen It
+            return [self seenItArray].count;
+        case 1: // All Movies
+            return _rottenTomatoesArray.count;
+        case 2: // Want To See It
+            return [self wantedArray].count;
+    }
+
+    return 0;
     //NSLog(@"%lu", (unsigned long)_rottenTomatoesArray.count);
 }
 
@@ -153,21 +135,32 @@
     SFFilmTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...    
-    [cell setFilm:_rottenTomatoesArray[indexPath.row]];
+    switch (_selectedSegment) {
+        case 0: // Seen It
+            [cell setFilm:[[self seenItArray] objectAtIndex:indexPath.row]];
+            break;
+        case 1: // All Movies
+            [cell setFilm:[[self rottenTomatoesArray] objectAtIndex:indexPath.row]];
+            break;
+        case 2: // Want To See It
+            [cell setFilm:[[self wantedArray] objectAtIndex:indexPath.row]];
+            break;
+    }
     
     return cell;
 }
 
+
+
+- (void)setSelectedSegment:(NSInteger)selectedSegment
+{    
+    _selectedSegment = selectedSegment;
+    [self.tableView reloadData];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Row selected");
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"detail" object:nil userInfo:@{@"film": self}];
-    
-    
-    //[self ]
-    
-    
+    [self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
     
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 //        NSDictionary *repoDict = _searchResults[indexPath.row];
@@ -182,6 +175,28 @@
      //[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadedImage" object:nil userInfo:@{@"user": self}];
     //[self.rottenTomatoesArray ]
     //
+    
+}
+
+- (NSArray *)wantedArray
+{
+    NSPredicate *wantedPredicate = [NSPredicate predicateWithFormat:@"wantsToSee = TRUE"];
+    return [_rottenTomatoesArray filteredArrayUsingPredicate:wantedPredicate];
+}
+
+- (NSArray *)seenItArray
+{
+//    NSMutableArray *seenFilmsArray = [NSMutableArray new];
+//    for (FilmModel *film in _rottenTomatoesArray) {
+//        if (film.hasSeen) {
+//            [seenFilmsArray addObject:film];
+//        }
+//    }
+//    
+//    return seenFilmsArray;
+
+    NSPredicate *wantedPredicate = [NSPredicate predicateWithFormat:@"hasSeen = TRUE"];
+    return [_rottenTomatoesArray filteredArrayUsingPredicate:wantedPredicate];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -205,4 +220,19 @@
     }];
 
 }
+
+#pragma mark - ScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSLog(@"Did Scroll");
+    [self.delegate scrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"Did End");
+    [self.delegate scrollViewDidEndDecelerating:scrollView];
+}
+
 @end

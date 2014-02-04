@@ -10,6 +10,6 @@
 #import "SFFilmModelDataController.h"
 #import "FilmModel.h"
 
-@interface SFTestViewController : UIViewController <UISearchBarDelegate, UIActionSheetDelegate>
+@interface SFTestViewController : UIViewController <UISearchBarDelegate, UIActionSheetDelegate, SFFilmModelDataControllerDelegate>
 
 @end

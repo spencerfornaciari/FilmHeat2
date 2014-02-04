@@ -9,6 +9,10 @@
 #import "SFTestViewController.h"
 
 @interface SFTestViewController ()
+{
+    FilmModel *currentFilm;
+}
+
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
 @property (weak, nonatomic) IBOutlet UITableView *theaterTableView;
 @property (strong, nonatomic) SFFilmModelDataController *theaterController;
@@ -36,7 +40,14 @@
     
     self.theaterTableView.delegate = self.theaterController;
     self.theaterTableView.dataSource = self.theaterController;
+    
+    self.theaterController.delegate = self;
+    self.theaterController.tableView = self.theaterTableView;
+    self.theaterController.selectedSegment = 1;
+    
     [self.theaterController populateFilmData:@"98121"];
+    
+    
     _strongArray = [NSMutableArray arrayWithArray: self.theaterController.rottenTomatoesArray];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -56,6 +67,21 @@
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     [swipeRight setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [self.view addGestureRecognizer:swipeRight];
+    
+    
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSString *codeFellowsPath = [documentsURL path];
+    NSString *seenItPath = [codeFellowsPath stringByAppendingPathComponent:@"students"];
+    
+    BOOL existingFile = [self doesPListExist];
+    
+    if (existingFile) {
+        NSArray *myArray = [[NSArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:seenItPath]];
+        NSLog(@"%@", [myArray[0] title]);
+    } else {
+        [NSKeyedArchiver archiveRootObject:self.theaterController.seenItArray toFile:seenItPath];
+    }
     
 //    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
 //    //There is a direction property on UISwipeGestureRecognizer. You can set that to both right and left swipes
@@ -82,7 +108,10 @@
     }
     
 }
-- (IBAction)selectedIndex:(id)sender {
+- (IBAction)selectedIndex:(id)sender
+{
+    [self.theaterTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
         [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor redColor];
@@ -97,14 +126,16 @@
     {
         [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor orangeColor];
-        self.theaterController.rottenTomatoesArray = _strongArray;
-
-        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:YES];
-        self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
+//        self.theaterController.rottenTomatoesArray = _strongArray;
+//
+//        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:YES];
+//        self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
         
        // [self.theaterTableView reloadData];
         
     }
+    
+    [self.theaterController setSelectedSegment:_segmentOutlet.selectedSegmentIndex];
 }
 
 - (void)didReceiveMemoryWarning
@@ -150,10 +181,26 @@
 
 #pragma mark - Dynamically search text as user enters it
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"Search Bar Should Begin Editing");
+    [self.theaterTableView setUserInteractionEnabled:NO];
+    
+    return YES;
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     searchBar.text = @"";
     [searchBar resignFirstResponder];
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"Search Bar Should End Editing");
+    [self.theaterTableView setUserInteractionEnabled:YES];
+    
+    return YES;
 }
 
 
@@ -181,6 +228,12 @@
     }
     
     [self.theaterTableView reloadData];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"Touches Began");
+    [self.theaterSearchBar resignFirstResponder];
 }
 
 -(void) dismissKeyboard:(id)sender
@@ -239,6 +292,44 @@
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[SFMovieDetailViewController class]]) {
+        [(SFMovieDetailViewController *)segue.destinationViewController setFilm:currentFilm];
+    }
+}
+
+-(void)selectedFilm:(FilmModel *)film
+{
+    currentFilm = film;
+    [self performSegueWithIdentifier:@"detailModal" sender:nil];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //NSLog(@"Did Scroll");
+    [_segmentOutlet setUserInteractionEnabled:NO];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    //NSLog(@"Did End");
+    [_segmentOutlet setUserInteractionEnabled:YES];
+}
+
+-(BOOL)doesPListExist
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSString *codeFellowsPath = [documentsURL path];
+    codeFellowsPath = [codeFellowsPath stringByAppendingPathComponent:@"seenItArray"];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:codeFellowsPath]) {
+        return FALSE;
+    } else {
+        return TRUE;
+    }
+}
 
 
 @end

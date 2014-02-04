@@ -23,6 +23,8 @@
 @property (nonatomic) NSArray *genres;
 @property (nonatomic) NSArray *showtimes;
 
+@property (nonatomic, readwrite) BOOL hasSeen, wantsToSee;
+
 @property (nonatomic) BOOL isDownloading;
 @property (nonatomic, weak) NSOperationQueue *downloadQueue;
 

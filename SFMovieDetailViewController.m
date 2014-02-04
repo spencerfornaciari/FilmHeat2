@@ -33,6 +33,15 @@
 	// Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.movieSynopsis.text = _film.synopsis;
+    self.moviePoster.image = _film.posterImage;
+    self.movieYear.text = _film.releaseYear.stringValue;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -47,4 +56,17 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+-(void)setFilm:(FilmModel *)film
+{
+    _film = film;
+    
+//    @property (weak, nonatomic) IBOutlet UIImageView *moviePoster;
+//    @property (weak, nonatomic) IBOutlet UITextView *movieSynopsis;
+//    @property (weak, nonatomic) IBOutlet UILabel *myRating;
+//    @property (weak, nonatomic) IBOutlet UISlider *ratingSlider;
+//    @property (weak, nonatomic) IBOutlet UILabel *movieYear;
+    
+}
+
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "SFScrollViewController.h"
-#import "SFInTheaterTableViewController.h"
 
 @interface SFScrollViewController ()
 {

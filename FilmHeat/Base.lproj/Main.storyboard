@@ -305,7 +305,6 @@
                                             <outlet property="filmMPAARating" destination="ags-p0-Jdn" id="xAW-4L-B30"/>
                                             <outlet property="filmThumbnailPoster" destination="xJH-8b-iKn" id="s7T-LL-Sjf"/>
                                             <outlet property="filmTitle" destination="niO-OR-MYf" id="XwZ-uA-HfW"/>
-                                            <segue destination="7qj-cp-Piw" kind="modal" id="Dvj-Lv-Rem"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -330,6 +329,7 @@
                         <outlet property="segmentOutlet" destination="mof-cz-FjY" id="irH-nj-EbP"/>
                         <outlet property="theaterSearchBar" destination="g9U-lI-SsY" id="CmN-z5-H5D"/>
                         <outlet property="theaterTableView" destination="U9C-gz-LRw" id="38k-Ar-9Fl"/>
+                        <segue destination="7qj-cp-Piw" kind="modal" identifier="detailModal" id="GC8-fW-w77"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6T-KW-d5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
