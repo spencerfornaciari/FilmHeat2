@@ -33,38 +33,10 @@
     
     NSError *error;
     
-    //NSDictionary *tmsDictionary = [NSJSONSerialization JSONObjectWithData:tmsData options:NSJSONReadingMutableContainers error:&error];
-    
     NSArray *tmsArray = [NSJSONSerialization JSONObjectWithData:tmsData
                                                         options:NSJSONReadingMutableContainers
                                                           error:&error];
     
-    
-    ///Find theaters: http://data.tmsapi.com/v1/theatres?zip=98121&api_key=7f4sgppp533ecxvutkaqg243
-    //Theater showtimes: http://data.tmsapi.com/v1/theatres/8749/showings?startDate=2013-11-26&api_key=7f4sgppp533ecxvutkaqg243
-    
-    
-    
-    //    NSString *tmsString = @"http://data.tmsapi.com/v1/movies/showings?startDate=2014-02-01&zip=98121&api_key=7f4sgppp533ecxvutkaqg243";
-    //    NSURL *tmsURL = [NSURL URLWithString:tmsString];
-    //    NSData *tmsData = [NSData dataWithContentsOfURL:tmsURL];
-    //
-    //    NSArray *tmsArray = [NSJSONSerialization JSONObjectWithData:tmsData
-    //                                                                  options:kNilOptions
-    //                                                                    error:&error];
-    //
-    //
-    //    NSLog(@"%@", [tmsArray[0] objectForKey:@"title"]);
-    //    NSLog(@"%@", [tmsArray[0] objectForKey:@"showtimes"][0]);
-    //    NSLog(@"%@", [NSDate date]);
-    //NSString *TMSSTRING = [[tmsArray[0] objectForKey:@"showtimes"][0] objectForKey:@"ticketURI"];
-    //NSURL *testURL = [[tmsArray[0] objectForKey:@"showtimes"][0] objectForKey:@"ticketURI"]; // <-direct input works
-    
-    //NSString *testDate = [[tmsArray[0] objectForKey:@"showtimes"][0] objectForKey:@"dateTime"]; // <-direct input does not work correctly
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
-    [formatter setDateFormat:@"hh:mm yyyy-MM-dd"];
     
     NSMutableArray *rottenInstance = [[NSMutableArray alloc] init];
     
@@ -76,18 +48,40 @@
         //film.isDownloading = NO;
         
         film.title = dictionary[@"title"];
+        NSLog(@"%@", film.title);
         
         film.synopsis = dictionary[@"shortDescription"];
         
         //Set the film's MPAA rating
-        film.mpaaRating = [dictionary valueForKeyPath:@"ratings.code"];
+        
+        NSString *rating = [NSString stringWithFormat:@"%@", [dictionary valueForKeyPath:@"ratings.code"]];
+        
+        if (rating) {
+            film.mpaaRating = [dictionary valueForKeyPath:@"ratings.code"];
+            //NSLog(@"TRUE");
+            //NSLog(@"%@", [dictionary valueForKeyPath:@"ratings.code"]);
+        } else {
+            //NSLog(@"FALSE");
+            film.mpaaRating = @"NR";
+        }
+        
+//        film.mpaaRating = [dictionary valueForKeyPath:@"ratings.code"];
+//        NSLog(@"%@", film.mpaaRating);
         
         //Grab the URL for the thumbnail of the film's poster
         NSString *poster = [dictionary valueForKeyPath:@"preferredImage.uri"];
         film.thumbnailPoster = [NSString stringWithFormat:@"http://developer.tmsimg.com/%@?api_key=%@", poster, TMS_API_KEY];
         //NSLog(@"%@", film.thumbnailPoster);
         
-        film.showtimes = [dictionary valueForKey:@"showtimes"];
+        //[film.showtimes =
+        
+        //NSLog(@"%@", [dictionary valueForKeyPath:@"showtimes.theatre.name"]);
+//        NSString *thisDate = [dictionary valueForKeyPath:@"showtimes.dateTime"];
+        
+//        NSDateFormatter *newForm = [NSDateFormatter new];
+//        [newForm setDateFormat:@"yyyy-MM-dd"];
+//        NSLog(@"%@", thisDate);
+
         film.genres = [dictionary valueForKey:@"genres"];
         
         film.runtime = [film runTimeConverter:[dictionary valueForKey:@"runTime"]];
@@ -201,4 +195,14 @@
     return UITableViewCellEditingStyleNone;
 }
 
+- (void)addSwipeViewTo:(SFFilmTableViewCell *)cell direction:(UISwipeGestureRecognizerDirection)direction
+{
+
+    [UIView animateWithDuration:.2 animations:^{
+        cell.frame = CGRectMake(direction == UISwipeGestureRecognizerDirectionRight ? cell.frame.size.width : -cell.frame.size.width, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+    } completion:^(BOOL finished) {
+        
+    }];
+
+}
 @end

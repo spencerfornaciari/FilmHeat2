@@ -14,6 +14,8 @@
 @property (strong, nonatomic) SFFilmModelDataController *theaterController;
 @property (weak, nonatomic) IBOutlet UISearchBar *theaterSearchBar;
 
+@property (nonatomic) NSMutableArray *testArray;
+
 
 @property (strong, nonatomic) NSMutableArray *strongArray;
 
@@ -47,10 +49,19 @@
                                                  name:@"detail"
                                                object:nil];
     
-    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
-    //There is a direction property on UISwipeGestureRecognizer. You can set that to both right and left swipes
-    recognizer.direction  =  UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
-    [self.theaterTableView addGestureRecognizer:recognizer];
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    [swipeLeft setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [self.view addGestureRecognizer:swipeLeft];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    [swipeRight setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:swipeRight];
+    
+//    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
+//    //There is a direction property on UISwipeGestureRecognizer. You can set that to both right and left swipes
+//    recognizer.direction  =  UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
+//    [self.theaterTableView addGestureRecognizer:recognizer];
+
 //    UITapGestureRecognizer* tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
 //    [tapBackground setNumberOfTapsRequired:1];
 //    [self.view addGestureRecognizer:tapBackground];
@@ -73,7 +84,6 @@
 }
 - (IBAction)selectedIndex:(id)sender {
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
-        
         [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor redColor];
         self.theaterController.rottenTomatoesArray = _strongArray;
@@ -210,9 +220,17 @@
     //[self.theaterController.rottenTomatoesArray[modelRow] title];
 }
 
-- (void)handleSwipeFrom
+- (void)handleGesture:(UISwipeGestureRecognizer *)recognizer
 {
-    NSLog(@"SWIPE");
+
+    if (recognizer.direction == 1) {
+        //[self.testArray addObject:]
+        NSLog(@"RIGHT");
+    } else if (recognizer.direction == 2) {
+        NSLog(@"LEFT");
+    }
 }
+
+
 
 @end

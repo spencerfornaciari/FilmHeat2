@@ -14,10 +14,8 @@
 @property (weak, nonatomic) FilmModel *film;
 
 @property (strong, nonatomic) IBOutlet UILabel *filmTitle;
-@property (strong, nonatomic) IBOutlet UILabel *filmCriticRating;
-@property (strong, nonatomic) IBOutlet UILabel *filmAudienceRating;
 @property (strong, nonatomic) IBOutlet UIImageView *filmThumbnailPoster;
-@property (strong, nonatomic) IBOutlet UILabel *ratingVariance;
+@property (strong, nonatomic) IBOutlet UILabel *filmMPAARating;
 
 - (void)setFilm:(FilmModel *)film;
 

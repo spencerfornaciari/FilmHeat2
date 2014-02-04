@@ -30,16 +30,22 @@
 {
     _film = film;
     
-    self.filmTitle.text = film.title;
-    //self.filmTitle.textColor = [UIColor whiteColor];
+    self.filmTitle.text = film.title;    
     
-    self.filmCriticRating.text = [[NSNumber numberWithInt:film.criticsRating] stringValue];
-    //self.filmCriticRating.textColor = [UIColor whiteColor];
+//    if ([film.runtime isEqualToNumber:@0]) {
+//        self.filmMPAARating.text = @"NL";
+//    } else {
+//        self.filmMPAARating.text = [film.runtime stringValue];
+//    }
     
-    self.filmAudienceRating.text = [[NSNumber numberWithInt:film.audienceRating] stringValue];
-    //self.filmAudienceRating.textColor = [UIColor whiteColor];
-//
-    self.ratingVariance.text = [[NSNumber numberWithInt:film.ratingVariance] stringValue];
+    
+    
+//    if (![film.mpaaRating isEqualToString:@"NR"]) {
+//        self.filmMPAARating.text = @"NR";
+//    } else {
+//        //self.filmMPAARating.text = film.mpaaRating;
+//        NSLog(@"%@", film.mpaaRating);
+//    }
 //    //self.ratingVariance.textColor = [UIColor whiteColor];
     
     if (!film.posterImage) {
