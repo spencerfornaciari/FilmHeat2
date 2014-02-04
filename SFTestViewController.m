@@ -86,21 +86,12 @@
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
         [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor redColor];
-        self.theaterController.rottenTomatoesArray = _strongArray;
-        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
-        self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
-        
-       [self.theaterTableView reloadData];
+
         
     } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
         [self.view endEditing:YES];
         self.segmentOutlet.tintColor = [UIColor blueColor];
-        self.theaterController.rottenTomatoesArray = _strongArray;
 
-        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
-        self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
-        
-        [self.theaterTableView reloadData];
         
     } else if(self.segmentOutlet.selectedSegmentIndex == 2)
     {
@@ -135,13 +126,22 @@
     {
         case 0:
         {
-
+            self.theaterController.rottenTomatoesArray = _strongArray;
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+            self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
+            
+            [self.theaterTableView reloadData];
         }
             break;
             
         case 1:
         {
-
+            self.theaterController.rottenTomatoesArray = _strongArray;
+            
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO];
+            self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
+            
+            [self.theaterTableView reloadData];
         }
             break;
 
@@ -229,14 +229,13 @@
         } else {
             self.segmentOutlet.selectedSegmentIndex = 2;
         }
-    } else if (recognizer.direction == 2) {
+    } else {//if (recognizer.direction == 2) {
         NSLog(@"LEFT");
         if (self.segmentOutlet.selectedSegmentIndex > 0) {
             self.segmentOutlet.selectedSegmentIndex = self.segmentOutlet.selectedSegmentIndex - 1;
         } else {
             self.segmentOutlet.selectedSegmentIndex = 0;
         }
-    
     }
 }
 

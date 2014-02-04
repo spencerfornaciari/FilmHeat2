@@ -33,7 +33,30 @@
     self.gpsButton.backgroundColor = [UIColor redColor];
     self.gpsButton.tintColor = [UIColor whiteColor];
     
-    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"distanceThreshold"]);
+    //self.distanceThresholdSliderOutlet.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"];
+    
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"]) {
+        float flo = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"] / 20.f;
+        self.distanceThresholdSliderOutlet.value = flo;
+        int threshold = [self.distanceThresholdSliderOutlet value] * 20;
+        self.distanceThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"]) {
+        float flo =  [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] / 100.f;
+        self.criticsThresholdSliderOutlet.value = flo;
+        int threshold = [self.criticsThresholdSliderOutlet value] * 100;
+        self.criticsRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"]) {
+        float flo =  [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"] / 100.f;
+        self.audienceRatingSliderOutlet.value = flo;
+        int threshold = [self.audienceRatingSliderOutlet value] * 100;
+        self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    }
+    
+    NSLog(@"%f",[[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"] / 20.f);
 
     // Do any additional setup after loading the view.
 }
@@ -47,21 +70,22 @@
 - (IBAction)distanceThresholdSliderAction:(id)sender {
     int threshold = [self.distanceThresholdSliderOutlet value] * 20;
     self.distanceThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
-    [_prefs setInteger:threshold forKey:@"distanceThreshold"];
+    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"distanceThreshold"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (IBAction)criticsRatingThresholdSliderAction:(id)sender {
     int threshold = [self.criticsThresholdSliderOutlet value] * 100;
     self.criticsRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"criticThreshold"];
-
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (IBAction)audienceRatingThresholdSliderAction:(id)sender {
     int threshold = [self.audienceRatingSliderOutlet value] * 100;
     self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"audienceThreshold"];
-
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (IBAction)gpsButtonAction:(id)sender {
 }
