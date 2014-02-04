@@ -12,8 +12,6 @@
 
 - (IBAction)dismissViewController:(id)sender;
 
-
-
 @end
 
 @implementation SFMovieDetailViewController

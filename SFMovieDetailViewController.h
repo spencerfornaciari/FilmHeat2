@@ -11,12 +11,10 @@
 @interface SFMovieDetailViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *moviePoster;
-@property (weak, nonatomic) IBOutlet UILabel *movieTitle;
 @property (weak, nonatomic) IBOutlet UITextView *movieSynopsis;
 @property (weak, nonatomic) IBOutlet UILabel *myRating;
 @property (weak, nonatomic) IBOutlet UISlider *ratingSlider;
 
 - (IBAction)ratingsSliderInput:(id)sender;
-
 
 @end

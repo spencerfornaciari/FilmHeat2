@@ -29,7 +29,8 @@
     [super viewDidLoad];
     self.theaterController = [SFFilmModelDataController new];
     
-    self.theaterSearchBar.delegate =self;
+    self.theaterSearchBar.delegate = self;
+    self.segmentOutlet.selectedSegmentIndex = 2;
     
     self.theaterTableView.delegate = self.theaterController;
     self.theaterTableView.dataSource = self.theaterController;
@@ -190,15 +191,23 @@
 
 - (void)detailedView:(NSNotification *)note
 {
-    FilmModel *model = [note.userInfo objectForKey:@"user"];
+    FilmModel *model = [note.userInfo objectForKey:@"film"];
+    NSInteger modelRow = [self.theaterController.rottenTomatoesArray indexOfObject:model];
     
-    //NSInteger modelRow = [self.theaterController.rottenTomatoesArray indexOfObject:model];
+    NSLog(@"%ld", (long)modelRow );
+    //NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
     
-    NSLog(@"%@", [note userInfo] );
-   // NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
+//    SFMovieDetailViewController *controller = [SFMovieDetailViewController new];
+//    controller.movieSynopsis.text = [self.theaterController.rottenTomatoesArray[modelRow] synopsis];
+//    controller.moviePoster.image = [self.theaterController.rottenTomatoesArray[modelRow] posterImage];
+//    
+//    [self presentViewController:controller animated:YES completion:nil];
     
-  //  SFMovieDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"detailMovie"];
-  //  controller.movieTitle.text = @"hello";//[self.theaterController.rottenTomatoesArray[modelRow] title];
+    SFMovieDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"detailMovie"];
+    controller.movieSynopsis.text = @"hello";
+    controller.navigationItem.title = @"hello";
+    //controller.detailNavigationBarTitle.title
+    //[self.theaterController.rottenTomatoesArray[modelRow] title];
 }
 
 - (void)handleSwipeFrom

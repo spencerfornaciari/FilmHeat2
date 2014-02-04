@@ -99,7 +99,7 @@
 		897EB4DA1899CEAA007D43F3 /* SFScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFScrollViewController.m; path = ../SFScrollViewController.m; sourceTree = "<group>"; };
 		897EB4DC1899DAF0007D43F3 /* SFHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHistoryTableViewController.h; path = ../SFHistoryTableViewController.h; sourceTree = "<group>"; };
 		897EB4DD1899DAF1007D43F3 /* SFHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHistoryTableViewController.m; path = ../SFHistoryTableViewController.m; sourceTree = "<group>"; };
-		897EB573189B2DD0007D43F3 /* SFTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTestViewController.h; sourceTree = "<group>"; };
+		897EB573189B2DD0007D43F3 /* SFTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTestViewController.h; path = ../SFTestViewController.h; sourceTree = "<group>"; };
 		897EB574189B2DD0007D43F3 /* SFTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTestViewController.m; path = ../SFTestViewController.m; sourceTree = "<group>"; };
 		897EB576189B300B007D43F3 /* Mobile_Signal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Mobile_Signal.png; path = FilmHeat/Mobile_Signal.png; sourceTree = "<group>"; };
 		897EB578189B301F007D43F3 /* Mobile_Signal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Mobile_Signal@2x.png"; path = "FilmHeat/Mobile_Signal@2x.png"; sourceTree = "<group>"; };
@@ -179,6 +179,7 @@
 		8949F737188DDD090069E9D4 /* FilmHeat */ = {
 			isa = PBXGroup;
 			children = (
+				897EB573189B2DD0007D43F3 /* SFTestViewController.h */,
 				894DFACC18A0722000806267 /* Media */,
 				894DFAC918A0681000806267 /* SFCustomizeViewController.h */,
 				894DFACA18A0681100806267 /* SFCustomizeViewController.m */,
@@ -281,7 +282,6 @@
 				897EB57B189B3060007D43F3 /* Music@2x.png */,
 				897EB578189B301F007D43F3 /* Mobile_Signal@2x.png */,
 				897EB576189B300B007D43F3 /* Mobile_Signal.png */,
-				897EB573189B2DD0007D43F3 /* SFTestViewController.h */,
 			);
 			name = Media;
 			path = ..;

@@ -29,5 +29,7 @@
 @property (nonatomic, weak) NSOperationQueue *downloadQueue;
 
 -(void)downloadPoster;
+-(NSDate *)releaseDateConverter:(NSString *)releaseDateString;
+-(NSNumber *)runTimeConverter:(NSString *)runTimeString;
 
 @end

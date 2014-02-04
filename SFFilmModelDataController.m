@@ -87,24 +87,16 @@
         
         film.showtimes = [dictionary valueForKey:@"showtimes"];
         film.genres = [dictionary valueForKey:@"genres"];
-        film.releaseYear = [dictionary valueForKey:@"releaseYear"];
-        //film.releaseDate = [dictionary valueForKey:@"releaseDate"];
+        
+        film.runtime = [film runTimeConverter:[dictionary valueForKey:@"runTime"]];
         
         
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        
-        NSString *formattedDateString = [dictionary valueForKey:@"releaseDate"];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        
-        
-        NSDate *dateFromString = [[NSDate alloc] init];
-        // voila!
-        dateFromString = [dateFormatter dateFromString:formattedDateString];
+        film.releaseDate = [film releaseDateConverter:[dictionary valueForKey:@"releaseDate"]];
+    
         NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
         [dateFormatter2 setDateStyle:NSDateFormatterShortStyle];
-        film.releaseDate = dateFromString;
+        //NSLog(@"%@", [dateFormatter2 stringFromDate:film.releaseDate]);
         
-        NSLog(@"%@", [dateFormatter2 stringFromDate:film.releaseDate]);
         //NSLog(@"%@", film.showtimes);
 
 //        NSString *string = film.title;
@@ -210,7 +202,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Row selected");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"detail" object:nil userInfo:@{@"user": indexPath}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"detail" object:nil userInfo:@{@"film": self}];
+    
+    
+    //[self ]
+    
+    
     
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 //        NSDictionary *repoDict = _searchResults[indexPath.row];

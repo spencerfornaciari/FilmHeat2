@@ -38,4 +38,40 @@
     
 }
 
+-(NSDate *)releaseDateConverter:(NSString *)releaseDateString
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSString *formattedDateString = releaseDateString;
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSDate *dateFromString = [[NSDate alloc] init];
+    dateFromString = [dateFormatter dateFromString:formattedDateString];
+    
+    return dateFromString;
+}
+
+-(NSNumber *)runTimeConverter:(NSString *)runTimeString
+{
+    NSArray *runTimeRawCharacters = [runTimeString componentsSeparatedByCharactersInSet:
+                        [NSCharacterSet characterSetWithCharactersInString:@"0HM"]];
+    NSMutableArray *runTimeParsedCharacters = [NSMutableArray arrayWithArray:runTimeRawCharacters];
+    [runTimeParsedCharacters removeObjectAtIndex:0];
+    [runTimeParsedCharacters removeLastObject];
+    
+    int filmRuntime = 0;
+    
+    for (int i = 0; i < runTimeParsedCharacters.count; i++)
+    {
+        if (![runTimeParsedCharacters[i] isEqualToString:@""]) {
+            if (i == 0) {
+                filmRuntime = [runTimeParsedCharacters[i] integerValue] * 60;
+            } else {
+                filmRuntime = filmRuntime + [runTimeParsedCharacters[i] integerValue];
+            }
+        }
+    }
+
+    return [NSNumber numberWithInteger:filmRuntime];
+}
+
 @end
