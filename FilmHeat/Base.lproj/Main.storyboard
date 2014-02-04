@@ -553,7 +553,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Lo-8R-L9S">
-                                <rect key="frame" x="34" y="261" width="240" height="87"/>
+                                <rect key="frame" x="34" y="255" width="240" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -633,6 +633,7 @@
                     <connections>
                         <outlet property="moviePoster" destination="9eU-S6-bzQ" id="VAS-tQ-Q3n"/>
                         <outlet property="movieSynopsis" destination="5Lo-8R-L9S" id="1gp-O0-qHp"/>
+                        <outlet property="movieYear" destination="Nb9-M8-zrO" id="r9E-aM-UnW"/>
                         <outlet property="myRating" destination="tfj-Hk-uPg" id="04J-T6-s8u"/>
                         <outlet property="ratingSlider" destination="4eb-4I-JR9" id="6ZI-8r-Zfv"/>
                     </connections>

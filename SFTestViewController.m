@@ -32,7 +32,7 @@
     self.theaterController = [SFFilmModelDataController new];
     
     self.theaterSearchBar.delegate = self;
-    self.segmentOutlet.selectedSegmentIndex = 2;
+    self.segmentOutlet.selectedSegmentIndex = 1;
     
     self.theaterTableView.delegate = self.theaterController;
     self.theaterTableView.dataSource = self.theaterController;
@@ -97,7 +97,7 @@
         self.segmentOutlet.tintColor = [UIColor blueColor];
         self.theaterController.rottenTomatoesArray = _strongArray;
 
-        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO];
+        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
         self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
         
         [self.theaterTableView reloadData];
@@ -152,10 +152,8 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-   // NSLog(@"%@", searchBar.text);
     searchBar.text = @"";
     [searchBar resignFirstResponder];
-
 }
 
 
@@ -201,10 +199,10 @@
 
 - (void)detailedView:(NSNotification *)note
 {
-    FilmModel *model = [note.userInfo objectForKey:@"film"];
-    NSInteger modelRow = [self.theaterController.rottenTomatoesArray indexOfObject:model];
-    
-    NSLog(@"%ld", (long)modelRow );
+//    FilmModel *model = [note.userInfo objectForKey:@"film"];
+//    NSInteger modelRow = [self.theaterController.rottenTomatoesArray indexOfObject:model];
+//    
+//    NSLog(@"%ld", (long)modelRow );
     //NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
     
 //    SFMovieDetailViewController *controller = [SFMovieDetailViewController new];
@@ -213,11 +211,11 @@
 //    
 //    [self presentViewController:controller animated:YES completion:nil];
     
-    SFMovieDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"detailMovie"];
+    SFMovieDetailViewController *controller = [SFMovieDetailViewController new];
     controller.movieSynopsis.text = @"hello";
     controller.navigationItem.title = @"hello";
-    //controller.detailNavigationBarTitle.title
-    //[self.theaterController.rottenTomatoesArray[modelRow] title];
+    controller.movieYear.text = @"hello";
+    
 }
 
 - (void)handleGesture:(UISwipeGestureRecognizer *)recognizer
@@ -226,8 +224,19 @@
     if (recognizer.direction == 1) {
         //[self.testArray addObject:]
         NSLog(@"RIGHT");
+        if (self.segmentOutlet.selectedSegmentIndex < 2) {
+            self.segmentOutlet.selectedSegmentIndex = self.segmentOutlet.selectedSegmentIndex + 1;
+        } else {
+            self.segmentOutlet.selectedSegmentIndex = 2;
+        }
     } else if (recognizer.direction == 2) {
         NSLog(@"LEFT");
+        if (self.segmentOutlet.selectedSegmentIndex > 0) {
+            self.segmentOutlet.selectedSegmentIndex = self.segmentOutlet.selectedSegmentIndex - 1;
+        } else {
+            self.segmentOutlet.selectedSegmentIndex = 0;
+        }
+    
     }
 }
 

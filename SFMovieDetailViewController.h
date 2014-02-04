@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *movieSynopsis;
 @property (weak, nonatomic) IBOutlet UILabel *myRating;
 @property (weak, nonatomic) IBOutlet UISlider *ratingSlider;
+@property (weak, nonatomic) IBOutlet UILabel *movieYear;
 
 - (IBAction)ratingsSliderInput:(id)sender;
 

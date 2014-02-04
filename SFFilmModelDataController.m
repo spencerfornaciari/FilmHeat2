@@ -48,7 +48,6 @@
         //film.isDownloading = NO;
         
         film.title = dictionary[@"title"];
-        NSLog(@"%@", film.title);
         
         film.synopsis = dictionary[@"shortDescription"];
         
@@ -162,6 +161,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Row selected");
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"detail" object:nil userInfo:@{@"film": self}];
     
     
