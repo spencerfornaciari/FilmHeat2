@@ -9,6 +9,9 @@
 #import "SFCustomizeViewController.h"
 
 @interface SFCustomizeViewController ()
+- (IBAction)dismissViewController:(id)sender;
+
+@property (nonatomic) NSUserDefaults *prefs;
 
 @end
 
@@ -26,8 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _prefs = [NSUserDefaults standardUserDefaults];
     self.gpsButton.backgroundColor = [UIColor redColor];
     self.gpsButton.tintColor = [UIColor whiteColor];
+    
+    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"distanceThreshold"]);
+
     // Do any additional setup after loading the view.
 }
 
@@ -40,17 +47,25 @@
 - (IBAction)distanceThresholdSliderAction:(id)sender {
     int threshold = [self.distanceThresholdSliderOutlet value] * 20;
     self.distanceThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    [_prefs setInteger:threshold forKey:@"distanceThreshold"];
 }
 
 - (IBAction)criticsRatingThresholdSliderAction:(id)sender {
     int threshold = [self.criticsThresholdSliderOutlet value] * 100;
     self.criticsRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"criticThreshold"];
+
 }
 
 - (IBAction)audienceRatingThresholdSliderAction:(id)sender {
     int threshold = [self.audienceRatingSliderOutlet value] * 100;
     self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"audienceThreshold"];
+
 }
 - (IBAction)gpsButtonAction:(id)sender {
+}
+- (IBAction)dismissViewController:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
