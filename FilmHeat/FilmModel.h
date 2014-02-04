@@ -12,12 +12,9 @@
 @interface FilmModel : NSObject
 
 @property (strong, nonatomic) NSString *title;
-@property (nonatomic) NSInteger audienceRating;
-@property (nonatomic) NSInteger criticsRating;
-@property (nonatomic) NSInteger ratingVariance;
+
 @property (strong, nonatomic) NSString *thumbnailPoster;
 @property (strong, nonatomic) UIImage *posterImage;
-@property (strong, nonatomic) NSString *imdb;
 @property (strong, nonatomic) NSNumber *runtime;
 @property (strong, nonatomic) NSString *synopsis;
 @property (strong, nonatomic) NSString *mpaaRating;

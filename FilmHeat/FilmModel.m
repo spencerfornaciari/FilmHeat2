@@ -14,11 +14,37 @@
 {
     self = [super init];
     _isDownloading = FALSE;
-    _criticsRating = 10;
-    _audienceRating = 90;
-    _ratingVariance = 80;
     
     return self;
+}
+
+-(id)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super init])
+    {
+        self.title = [decoder decodeObjectForKey:@"title"];
+        self.mpaaRating = [decoder decodeObjectForKey:@"mpaaRating"];
+        self.runtime = [decoder decodeObjectForKey:@"runtime"];
+        self.genres = [decoder decodeObjectForKey:@"genres"];
+        self.thumbnailPoster = [decoder decodeObjectForKey:@"thumbnailPoster"];
+        self.releaseDate = [decoder decodeObjectForKey:@"releaseDate"];
+        self.synopsis = [decoder decodeObjectForKey:@"synsopsis"];
+        
+        return self;
+    }
+    
+    return nil;
+}
+
+-(void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.title forKey:@"title"];
+    [encoder encodeObject:self.mpaaRating forKey:@"mpaaRating"];
+    [encoder encodeObject:self.runtime forKey:@"runtime"];
+    [encoder encodeObject:self.genres forKey:@"genres"];
+    [encoder encodeObject:self.thumbnailPoster forKey:@"thumbnailPoster"];
+    [encoder encodeObject:self.releaseDate forKey:@"releaseDate"];
+    [encoder encodeObject:self.synopsis forKey:@"synopsis"];
 }
 
 -(void)downloadPoster
