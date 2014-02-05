@@ -51,20 +51,19 @@
     } else {
         self.releaseDateLabel.text = @"N/A";
     }
-    NSLog(@"%d", _film.myRating);
-
-    if (_film.myRating) {
-        self.myRatingLabel.text = [[NSNumber numberWithInt:_film.myRating] stringValue];
-        self.myRatingSliderOutlet.value = _film.myRating / 100.f;
-    } else {
-        self.myRatingLabel.text = @"50";
-        self.myRatingSliderOutlet.value = .5;
-    }
     
     if (!_film.hasSeen) {
         self.myRatingSliderOutlet.hidden = TRUE;
         self.myRatingLabel.hidden = TRUE;
         self.myRatingTextLabel.hidden = TRUE;
+    } else {
+        if (_film.myRating) {
+            self.myRatingLabel.text = _film.myRating;
+            self.myRatingSliderOutlet.value = [_film.myRating intValue]/ 100.f;
+        } else {
+            self.myRatingLabel.text = @"50";
+            self.myRatingSliderOutlet.value = .5;
+        }
     }
     
 }
@@ -78,9 +77,7 @@
 - (IBAction)ratingsSliderInput:(id)sender {
     int rating = [self.myRatingSliderOutlet value] * 100;
     self.myRatingLabel.text = [[NSNumber numberWithInt:rating] stringValue];
-    NSLog(@"%f", self.myRatingSliderOutlet.value);
-    _film.myRating = rating;
-    
+    _film.myRating = [[NSNumber numberWithInt:rating] stringValue];
 }
 - (IBAction)dismissViewController:(id)sender {
     

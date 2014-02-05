@@ -71,17 +71,8 @@
     NSString *filmHeatPath = [documentsURL path];
     _seenItPath = [filmHeatPath stringByAppendingPathComponent:@"seenItArray"];
     _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:@"wantToSeeIt"];
-    
-    BOOL existingFile = [self doesPListExist];
-    
-    if (existingFile) {
-        NSArray *myArray = [[NSArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:_seenItPath]];
-        NSLog(@"Seen it count: %d", myArray.count);
-        NSArray *myArray2 = [[NSArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:_wantToSeeItPath]];
-        NSLog(@"Want to see it count: %d", myArray2.count);
-    } else {
-    }
-    
+
+    NSLog(@"%@", self.theaterController.wantedArray);
 //    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
 //    //There is a direction property on UISwipeGestureRecognizer. You can set that to both right and left swipes
 //    recognizer.direction  =  UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
@@ -97,21 +88,39 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     
-    if (self.segmentOutlet.selectedSegmentIndex == 0) {
-        self.segmentOutlet.tintColor = [UIColor redColor];
-    } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
-        self.segmentOutlet.tintColor = [UIColor blueColor];
-    } else if(self.segmentOutlet.selectedSegmentIndex == 2)
-    {
-        self.segmentOutlet.tintColor = [UIColor greenColor];
+    if (self.theaterController.seenItArray.count == 0) {
+        //self.segmentOutlet.enabled = FALSE;
+        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:0];
     }
+
+    
+    if (self.theaterController.wantedArray.count == 0) {
+        //self.segmentOutlet.enabled = FALSE;
+        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:2];
+    }
+
+    
+//    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+//        if (self.theaterController.seenItArray.count == 0) {
+//            self.segmentOutlet.enabled = FALSE;
+//        }
+//    } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
+//        self.segmentOutlet.tintColor = [UIColor blueColor];
+//        
+//    } else if(self.segmentOutlet.selectedSegmentIndex == 2)
+//    {
+//            }
+    
     [NSKeyedArchiver archiveRootObject:self.theaterController.seenItArray toFile:_seenItPath];
     [NSKeyedArchiver archiveRootObject:self.theaterController.wantedArray toFile:_wantToSeeItPath];
 
-    
 }
+
+#pragma mark - UISegmented Controller Methods
+
 - (IBAction)selectedIndex:(id)sender
 {
+    
     [self.theaterTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
@@ -145,6 +154,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - UIActionSheet Methods
 
 - (IBAction)buttonAction:(id)sender {
     NSLog(@"Bar button");
@@ -252,26 +263,7 @@
     [self.theaterTableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
 }
 
-- (void)detailedView:(NSNotification *)note
-{
-//    FilmModel *model = [note.userInfo objectForKey:@"film"];
-//    NSInteger modelRow = [self.theaterController.rottenTomatoesArray indexOfObject:model];
-//    
-//    NSLog(@"%ld", (long)modelRow );
-    //NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
-    
-//    SFMovieDetailViewController *controller = [SFMovieDetailViewController new];
-//    controller.movieSynopsis.text = [self.theaterController.rottenTomatoesArray[modelRow] synopsis];
-//    controller.moviePoster.image = [self.theaterController.rottenTomatoesArray[modelRow] posterImage];
-//    
-//    [self presentViewController:controller animated:YES completion:nil];
-    
-    SFMovieDetailViewController *controller = [SFMovieDetailViewController new];
-    controller.movieSynopsis.text = @"hello";
-    controller.navigationItem.title = @"hello";
-    controller.releaseDateLabel.text = @"hello";
-    
-}
+#pragma mark - Swipe Gesture handlers
 
 - (void)handleGesture:(UISwipeGestureRecognizer *)recognizer
 {
@@ -286,6 +278,15 @@
         }
     } else {//if (recognizer.direction == 2) {
         NSLog(@"LEFT");
+        //NSLog(@"%@", [self.theaterTableView indexPathForRowAtPoint:CGPoint point = [sender locationInView:self.tableView];);
+        [UIView animateWithDuration:.4 animations:^{
+            // = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+            
+            //self.table.view.frame = CGRectMake(self.view.frame.size.width * .5, self.topViewController.view.frame.origin.y, self.topViewController.view.frame.size.width, self.topViewController.view.frame.size.height);
+        } completion:^(BOOL finished) {
+            
+        }];
+
         if (self.segmentOutlet.selectedSegmentIndex > 0) {
             self.segmentOutlet.selectedSegmentIndex = self.segmentOutlet.selectedSegmentIndex - 1;
         } else {
@@ -293,6 +294,8 @@
         }
     }
 }
+
+#pragma mark - seguing to Movie Detail View Controller
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -319,14 +322,14 @@
     [_segmentOutlet setUserInteractionEnabled:YES];
 }
 
--(BOOL)doesPListExist
+-(BOOL)doesSeenItArrayExist
 {
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
-    NSString *codeFellowsPath = [documentsURL path];
-    codeFellowsPath = [codeFellowsPath stringByAppendingPathComponent:@"seenItArray"];
+    NSString *seenItPath = [documentsURL path];
+    seenItPath = [seenItPath stringByAppendingPathComponent:@"seenItArray"];
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:codeFellowsPath]) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:seenItPath]) {
         return FALSE;
     } else {
         return TRUE;

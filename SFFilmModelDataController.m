@@ -14,6 +14,7 @@
 
 @interface SFFilmModelDataController () <UIScrollViewDelegate>
 
+
 @end
 
 @implementation SFFilmModelDataController
@@ -21,8 +22,20 @@
 - (void)populateFilmData:(NSString *)zipCode
 {
     _downloadQueue = [NSOperationQueue new];
-
-   // NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", ROTTEN_TOMATOES_API_KEY];
+    
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSString *filmHeatPath = [documentsURL path];
+    self.seenItPath = [filmHeatPath stringByAppendingPathComponent:@"seenItArray"];
+    self.wantedPath = [filmHeatPath stringByAppendingPathComponent:@"wantedArray"];
+    
+    if ([self doesSeenItArrayExist]) {
+        self.seenItArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
+        self.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
+    } else {
+        self.seenItArray = [NSMutableArray new];
+        self.wantedArray = [NSMutableArray new];
+    }
     
     NSDateFormatter *apiDateFormatter = [NSDateFormatter new];
     [apiDateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -67,6 +80,17 @@
             film.mpaaRating = @"NR";
         }
         
+//        if ([self doesSeenItArrayExist]) {
+//            NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
+//            for (FilmModel *check in ratingCheck) {
+//                if ([check.title isEqualToString:film.title]) {
+//                    film.myRating = check.myRating;
+//                } else {
+//                    film.myRating = [[NSNumber numberWithInt:75] stringValue];
+//                }
+//            }
+//        }
+        
 //        film.mpaaRating = [dictionary valueForKeyPath:@"ratings.code"];
 //        NSLog(@"%@", film.mpaaRating);
         
@@ -98,19 +122,35 @@
        
     }
     
-    for (int i=0; i<5; i++) {
-        FilmModel *film = rottenInstance[i];
-        film.wantsToSee = YES;
-    }
 
+//    
     for (int i=0; i<10; i++) {
-        FilmModel *film = rottenInstance[i];
+        FilmModel *film = self.seenItArray[i];
         film.hasSeen = YES;
     }
 
     
-    _rottenTomatoesArray = [NSArray arrayWithArray:rottenInstance];
+   // NSArray *myArray = [[NSArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath]];
+    
+    
+//    for (int i=0; i<5; i++) {
+//        FilmModel *film = self.seenItArray[i];
+//        film.wantsToSee = YES;
+//    }
 
+//    if ([self doesSeenItArrayExist]) {
+//        
+//        
+//        self.seenItArray = [NSArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath]];
+//        NSLog(@"%@", self.seenItArray);
+//    } else {
+//        
+//        NSPredicate *wantedPredicate = [NSPredicate predicateWithFormat:@"hasSeen = TRUE"];
+//        self.seenItArray = [_rottenTomatoesArray filteredArrayUsingPredicate:wantedPredicate];
+//    }
+
+    
+    _rottenTomatoesArray = rottenInstance;
     [self.tableView reloadData];
 }
 
@@ -119,11 +159,11 @@
     // Return the number of rows in the section.
     switch (_selectedSegment) {
         case 0: // Seen It
-            return [self seenItArray].count;
+            return self.seenItArray.count;
         case 1: // All Movies
-            return _rottenTomatoesArray.count;
+            return self.rottenTomatoesArray.count;
         case 2: // Want To See It
-            return [self wantedArray].count;
+            return self.wantedArray.count;
     }
 
     return 0;
@@ -137,13 +177,13 @@
     // Configure the cell...    
     switch (_selectedSegment) {
         case 0: // Seen It
-            [cell setFilm:[[self seenItArray] objectAtIndex:indexPath.row]];
+            [cell setFilm:[self.seenItArray objectAtIndex:indexPath.row]];
             break;
         case 1: // All Movies
-            [cell setFilm:[[self rottenTomatoesArray] objectAtIndex:indexPath.row]];
+            [cell setFilm:[self.rottenTomatoesArray objectAtIndex:indexPath.row]];
             break;
         case 2: // Want To See It
-            [cell setFilm:[[self wantedArray] objectAtIndex:indexPath.row]];
+            [cell setFilm:[self.wantedArray objectAtIndex:indexPath.row]];
             break;
     }
     
@@ -160,7 +200,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
+    if (_selectedSegment == 0) {
+        [self.delegate selectedFilm:self.seenItArray[indexPath.row]];
+    } else if (_selectedSegment == 1) {
+        [self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
+    } else if (_selectedSegment)
+    {
+        [self.delegate selectedFilm:self.wantedArray[indexPath.row]];
+    }
+//    if ([self doesSeenItArrayExist]) {
+//        //[self.delegate selectedFilm:self.seenItArray[indexPath.row]];
+//        NSLog(@"TRUE");
+//        [self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
+//    } else {
+//        [self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
+//
+//    }
+    //[self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
     
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 //        NSDictionary *repoDict = _searchResults[indexPath.row];
@@ -178,26 +234,36 @@
     
 }
 
-- (NSArray *)wantedArray
-{
-    NSPredicate *wantedPredicate = [NSPredicate predicateWithFormat:@"wantsToSee = TRUE"];
-    return [_rottenTomatoesArray filteredArrayUsingPredicate:wantedPredicate];
-}
+//- (NSArray *)wantedArray
+//{
+//    NSPredicate *wantedPredicate = [NSPredicate predicateWithFormat:@"wantsToSee = TRUE"];
+//    return [_rottenTomatoesArray filteredArrayUsingPredicate:wantedPredicate];
+//}
 
-- (NSArray *)seenItArray
-{
-//    NSMutableArray *seenFilmsArray = [NSMutableArray new];
-//    for (FilmModel *film in _rottenTomatoesArray) {
-//        if (film.hasSeen) {
-//            [seenFilmsArray addObject:film];
-//        }
-//    }
+//- (NSArray *)seenItArray
+//{
+////    NSMutableArray *seenFilmsArray = [NSMutableArray new];
+////    for (FilmModel *film in _rottenTomatoesArray) {
+////        if (film.hasSeen) {
+////            [seenFilmsArray addObject:film];
+////        }
+////    }
+////    
+////    return seenFilmsArray;
 //    
-//    return seenFilmsArray;
+//    
+//
+//    
+//    
+//}
 
-    NSPredicate *wantedPredicate = [NSPredicate predicateWithFormat:@"hasSeen = TRUE"];
-    return [_rottenTomatoesArray filteredArrayUsingPredicate:wantedPredicate];
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return TRUE;
 }
+
+
+
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -233,6 +299,22 @@
 {
     //NSLog(@"Did End");
     [self.delegate scrollViewDidEndDecelerating:scrollView];
+}
+
+-(BOOL)doesSeenItArrayExist
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSString *seenItPath = [documentsURL path];
+    seenItPath = [seenItPath stringByAppendingPathComponent:@"seenItArray"];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:seenItPath]) {
+        
+        return FALSE;
+    } else {
+        
+        return TRUE;
+    }
 }
 
 @end

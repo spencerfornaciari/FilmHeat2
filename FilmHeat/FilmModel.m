@@ -14,6 +14,7 @@
 {
     self = [super init];
     _isDownloading = FALSE;
+    _myRating = [[NSNumber numberWithInt:40] stringValue];
     
     return self;
 }
@@ -29,6 +30,7 @@
         self.thumbnailPoster = [decoder decodeObjectForKey:@"thumbnailPoster"];
         self.releaseDate = [decoder decodeObjectForKey:@"releaseDate"];
         self.synopsis = [decoder decodeObjectForKey:@"synsopsis"];
+        self.myRating = [decoder decodeObjectForKey:@"myRating"];
         
         return self;
     }
@@ -45,6 +47,7 @@
     [encoder encodeObject:self.thumbnailPoster forKey:@"thumbnailPoster"];
     [encoder encodeObject:self.releaseDate forKey:@"releaseDate"];
     [encoder encodeObject:self.synopsis forKey:@"synopsis"];
+    [encoder encodeObject:self.myRating forKey:@"myRating"];
 }
 
 -(void)downloadPoster
