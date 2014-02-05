@@ -25,6 +25,8 @@
 
 @property (nonatomic, readwrite) BOOL hasSeen, wantsToSee;
 
+@property (nonatomic) int myRating;
+
 @property (nonatomic) BOOL isDownloading;
 @property (nonatomic, weak) NSOperationQueue *downloadQueue;
 

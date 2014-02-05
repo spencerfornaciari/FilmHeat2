@@ -33,6 +33,7 @@
     self.gpsButton.backgroundColor = [UIColor redColor];
     self.gpsButton.tintColor = [UIColor whiteColor];
     
+    
     //self.distanceThresholdSliderOutlet.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"];
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"]) {
@@ -55,9 +56,11 @@
         int threshold = [self.audienceRatingSliderOutlet value] * 100;
         self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     }
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"]) {
+        int zip =  [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"];
+        self.zipCodeTextField.text = [[NSNumber numberWithInt:zip] stringValue];
+    }
     
-    NSLog(@"%f",[[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"] / 20.f);
-
     // Do any additional setup after loading the view.
 }
 
@@ -91,5 +94,14 @@
 }
 - (IBAction)dismissViewController:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)submitZipCode:(id)sender
+{
+    self.zipCodeTextField.text = @"";
+    NSString *textfield = self.zipCodeTextField.text;
+    int zip = [textfield integerValue];
+    [[NSUserDefaults standardUserDefaults] setInteger:zip forKey:@"defaultZipCode"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.zipCodeTextField resignFirstResponder];
 }
 @end

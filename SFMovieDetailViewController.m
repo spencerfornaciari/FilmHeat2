@@ -11,6 +11,7 @@
 @interface SFMovieDetailViewController ()
 
 - (IBAction)dismissViewController:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *myRatingTextLabel;
 
 
 
@@ -37,9 +38,35 @@
 {
     [super viewWillAppear:animated];
     
+    self.detailViewTitle.title = _film.title;
+    
     self.movieSynopsis.text = _film.synopsis;
     self.moviePoster.image = _film.posterImage;
-    self.movieYear.text = _film.releaseYear.stringValue;
+    
+    NSDateFormatter *releaseDateFormatter = [[NSDateFormatter alloc] init];
+    [releaseDateFormatter setDateStyle:NSDateFormatterShortStyle];
+    
+    if (_film.releaseDate) {
+        self.releaseDateLabel.text = [NSString stringWithFormat:@"%@", [releaseDateFormatter stringFromDate:_film.releaseDate]];
+    } else {
+        self.releaseDateLabel.text = @"N/A";
+    }
+    NSLog(@"%d", _film.myRating);
+
+    if (_film.myRating) {
+        self.myRatingLabel.text = [[NSNumber numberWithInt:_film.myRating] stringValue];
+        self.myRatingSliderOutlet.value = _film.myRating / 100.f;
+    } else {
+        self.myRatingLabel.text = @"50";
+        self.myRatingSliderOutlet.value = .5;
+    }
+    
+    if (!_film.hasSeen) {
+        self.myRatingSliderOutlet.hidden = TRUE;
+        self.myRatingLabel.hidden = TRUE;
+        self.myRatingTextLabel.hidden = TRUE;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,8 +76,11 @@
 }
 
 - (IBAction)ratingsSliderInput:(id)sender {
-    int threshold = [self.ratingSlider value] * 100;
-    self.myRating.text = [[NSNumber numberWithInt:threshold] stringValue];
+    int rating = [self.myRatingSliderOutlet value] * 100;
+    self.myRatingLabel.text = [[NSNumber numberWithInt:rating] stringValue];
+    NSLog(@"%f", self.myRatingSliderOutlet.value);
+    _film.myRating = rating;
+    
 }
 - (IBAction)dismissViewController:(id)sender {
     
@@ -60,12 +90,6 @@
 -(void)setFilm:(FilmModel *)film
 {
     _film = film;
-    
-//    @property (weak, nonatomic) IBOutlet UIImageView *moviePoster;
-//    @property (weak, nonatomic) IBOutlet UITextView *movieSynopsis;
-//    @property (weak, nonatomic) IBOutlet UILabel *myRating;
-//    @property (weak, nonatomic) IBOutlet UISlider *ratingSlider;
-//    @property (weak, nonatomic) IBOutlet UILabel *movieYear;
     
 }
 

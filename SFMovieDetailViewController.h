@@ -13,9 +13,13 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *moviePoster;
 @property (weak, nonatomic) IBOutlet UITextView *movieSynopsis;
-@property (weak, nonatomic) IBOutlet UILabel *myRating;
-@property (weak, nonatomic) IBOutlet UISlider *ratingSlider;
-@property (weak, nonatomic) IBOutlet UILabel *movieYear;
+@property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *filmRatingLabel;
+@property (weak, nonatomic) IBOutlet UINavigationItem *detailViewTitle;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *myRatingLabel;
+@property (weak, nonatomic) IBOutlet UISlider *myRatingSliderOutlet;
 
 @property (weak, nonatomic) FilmModel *film;
 

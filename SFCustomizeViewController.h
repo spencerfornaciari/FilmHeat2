@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SFCustomizeViewController : UIViewController
+@interface SFCustomizeViewController : UIViewController <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *gpsButton;
 
+- (IBAction)submitZipCode:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *distanceThresholdLabel;

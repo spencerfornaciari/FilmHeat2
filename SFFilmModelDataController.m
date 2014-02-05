@@ -225,13 +225,13 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"Did Scroll");
+   // NSLog(@"Did Scroll");
     [self.delegate scrollViewDidScroll:scrollView];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"Did End");
+    //NSLog(@"Did End");
     [self.delegate scrollViewDidEndDecelerating:scrollView];
 }
 

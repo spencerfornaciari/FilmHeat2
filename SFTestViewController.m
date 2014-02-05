@@ -20,6 +20,8 @@
 
 @property (nonatomic) NSMutableArray *testArray;
 
+@property (nonatomic) NSString *seenItPath, *wantToSeeItPath;
+
 
 @property (strong, nonatomic) NSMutableArray *strongArray;
 
@@ -55,11 +57,6 @@
                                                  name:@"reload"
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(detailedView:)
-                                                 name:@"detail"
-                                               object:nil];
-    
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     [swipeLeft setDirection:(UISwipeGestureRecognizerDirectionLeft)];
     [self.view addGestureRecognizer:swipeLeft];
@@ -71,16 +68,18 @@
     
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
-    NSString *codeFellowsPath = [documentsURL path];
-    NSString *seenItPath = [codeFellowsPath stringByAppendingPathComponent:@"students"];
+    NSString *filmHeatPath = [documentsURL path];
+    _seenItPath = [filmHeatPath stringByAppendingPathComponent:@"seenItArray"];
+    _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:@"wantToSeeIt"];
     
     BOOL existingFile = [self doesPListExist];
     
     if (existingFile) {
-        NSArray *myArray = [[NSArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:seenItPath]];
-        NSLog(@"%@", [myArray[0] title]);
+        NSArray *myArray = [[NSArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:_seenItPath]];
+        NSLog(@"Seen it count: %d", myArray.count);
+        NSArray *myArray2 = [[NSArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:_wantToSeeItPath]];
+        NSLog(@"Want to see it count: %d", myArray2.count);
     } else {
-        [NSKeyedArchiver archiveRootObject:self.theaterController.seenItArray toFile:seenItPath];
     }
     
 //    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
@@ -106,6 +105,9 @@
     {
         self.segmentOutlet.tintColor = [UIColor greenColor];
     }
+    [NSKeyedArchiver archiveRootObject:self.theaterController.seenItArray toFile:_seenItPath];
+    [NSKeyedArchiver archiveRootObject:self.theaterController.wantedArray toFile:_wantToSeeItPath];
+
     
 }
 - (IBAction)selectedIndex:(id)sender
@@ -267,7 +269,7 @@
     SFMovieDetailViewController *controller = [SFMovieDetailViewController new];
     controller.movieSynopsis.text = @"hello";
     controller.navigationItem.title = @"hello";
-    controller.movieYear.text = @"hello";
+    controller.releaseDateLabel.text = @"hello";
     
 }
 
