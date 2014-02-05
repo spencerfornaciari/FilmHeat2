@@ -46,17 +46,13 @@
     NSString *apiDateString = [apiDateFormatter stringFromDate:[NSDate date]];
     
     NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=%@&zip=%@&imageSize=Sm&imageText=false&api_key=%@", apiDateString, zipCode, TMS_API_KEY];
-    
     NSURL *tmsURL = [NSURL URLWithString:tmsString];
-    
     NSData *tmsData = [NSData dataWithContentsOfURL:tmsURL];
     
     NSError *error;
-    
     NSArray *tmsArray = [NSJSONSerialization JSONObjectWithData:tmsData
                                                         options:NSJSONReadingMutableContainers
                                                           error:&error];
-    
     
     NSMutableArray *rottenInstance = [[NSMutableArray alloc] init];
     
