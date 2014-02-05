@@ -29,7 +29,7 @@
         self.genres = [decoder decodeObjectForKey:@"genres"];
         self.thumbnailPoster = [decoder decodeObjectForKey:@"thumbnailPoster"];
         self.releaseDate = [decoder decodeObjectForKey:@"releaseDate"];
-        self.synopsis = [decoder decodeObjectForKey:@"synsopsis"];
+        self.synopsis = [decoder decodeObjectForKey:@"synopsis"];
         self.myRating = [decoder decodeObjectForKey:@"myRating"];
         
         return self;

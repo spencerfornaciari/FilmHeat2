@@ -69,10 +69,26 @@
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
     NSString *filmHeatPath = [documentsURL path];
-    _seenItPath = [filmHeatPath stringByAppendingPathComponent:@"seenItArray"];
-    _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:@"wantToSeeIt"];
+    _seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
+    NSLog(@"%@", _seenItPath);
+    _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
 
-    NSLog(@"%@", self.theaterController.wantedArray);
+
+    for (int i=0; i<5; i++) {
+        [self.theaterController.wantedArray addObject:self.theaterController.rottenTomatoesArray[i]];
+        //self.theaterController.wantedArray[i].hasSeen = TRUE;
+        //        NSLog(@"%@", [self.wantedArray[i] title]);
+        
+       [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
+//        NSLog(@"%@", [self.seenItArray[i] title]);
+    }
+    
+    NSLog(@"Wanted: %d", self.theaterController.wantedArray.count);
+    NSLog(@"Seen It: %d", self.theaterController.seenItArray.count);
+    
+    for (FilmModel *film in self.theaterController.seenItArray) {
+        //NSLog(@"%@", film.posterImage);
+    }
 //    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
 //    //There is a direction property on UISwipeGestureRecognizer. You can set that to both right and left swipes
 //    recognizer.direction  =  UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
@@ -220,6 +236,10 @@
 //Updates as user enters text
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+    //    <#statements#>
+    }
+    
     NSMutableArray *searchArray = [NSMutableArray new];
     self.theaterController.rottenTomatoesArray = _strongArray;
     
@@ -239,6 +259,28 @@
     } else {
         self.theaterController.rottenTomatoesArray = searchArray;
     }
+    
+    [self.theaterTableView reloadData];
+}
+
+- (void)searchArray:(NSMutableArray *)searchedArray
+{
+    //NSMutableArray *tempArray = [NSMutableArray new];
+    
+    for (FilmModel *model in self.theaterController.rottenTomatoesArray)
+    {
+//        NSString *string = [model.title uppercaseString];
+//        if ([string hasPrefix:[searchText uppercaseString]])
+//        {
+//            [tempArray addObject:model];
+//        }
+    }
+    
+//    if (searchText.length == 0) {
+//        searchedArray = _strongArray;
+//    } else {
+//        searchedArray = tempArray;
+//    }
     
     [self.theaterTableView reloadData];
 }

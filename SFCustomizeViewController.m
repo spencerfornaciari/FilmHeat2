@@ -33,9 +33,6 @@
     self.gpsButton.backgroundColor = [UIColor redColor];
     self.gpsButton.tintColor = [UIColor whiteColor];
     
-    
-    //self.distanceThresholdSliderOutlet.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"];
-    
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"]) {
         float flo = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"] / 20.f;
         self.distanceThresholdSliderOutlet.value = flo;

@@ -26,14 +26,18 @@
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
     NSString *filmHeatPath = [documentsURL path];
-    self.seenItPath = [filmHeatPath stringByAppendingPathComponent:@"seenItArray"];
-    self.wantedPath = [filmHeatPath stringByAppendingPathComponent:@"wantedArray"];
+    self.seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
+    self.wantedPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
     
-    if ([self doesSeenItArrayExist]) {
+    if ([self doesArrayExist:SEEN_IT_FILE]) {
         self.seenItArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
-        self.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
     } else {
         self.seenItArray = [NSMutableArray new];
+    }
+    
+    if ([self doesArrayExist:WANT_TO_FILE]) {
+        self.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
+    } else {
         self.wantedArray = [NSMutableArray new];
     }
     
@@ -118,16 +122,22 @@
 //        [dateFormatter2 setDateStyle:NSDateFormatterShortStyle];
 //        NSLog(@"%@", [dateFormatter2 stringFromDate:film.releaseDate]);
 
-        [rottenInstance addObject:film];
+//        if ([self doesSeenItArrayExist])
+//        {
+//            if ([self.seenItArray containsObject:film.title]) {
+//                NSLog(@"Got it!");
+//            } else {
+                [rottenInstance addObject:film];
+//            }
+//        }
+        
+        
        
     }
     
 
 //    
-    for (int i=0; i<10; i++) {
-        FilmModel *film = self.seenItArray[i];
-        film.hasSeen = YES;
-    }
+
 
     
    // NSArray *myArray = [[NSArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath]];
@@ -301,18 +311,18 @@
     [self.delegate scrollViewDidEndDecelerating:scrollView];
 }
 
--(BOOL)doesSeenItArrayExist
+-(BOOL)doesArrayExist:(NSString *)arrayNameString
 {
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
-    NSString *seenItPath = [documentsURL path];
-    seenItPath = [seenItPath stringByAppendingPathComponent:@"seenItArray"];
+    NSString *documentsPath = [documentsURL path];
+    documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:seenItPath]) {
-        
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
+        NSLog(@"FALSE");
         return FALSE;
     } else {
-        
+        NSLog(@"TRUE");
         return TRUE;
     }
 }
